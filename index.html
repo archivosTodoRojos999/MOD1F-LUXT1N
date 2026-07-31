@@ -1,274 +1,437 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>MOD1F LUXT1N - Modificaciones para tu celular</title>
-    <style>
-        /* Estilos generales */
-        body, html {
-            margin: 0; padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #121212;
-            color: #eee;
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
 
-        /* Contenedor del anuncio */
-        #splash {
-            position: absolute;
-            width: 100vw;
-            height: 100vh;
-            background: linear-gradient(135deg, #ff416c, #ff4b2b);
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 2.5rem;
-            text-align: center;
-            padding: 0 20px;
-            animation: pulseBackground 5s ease-in-out forwards;
-            z-index: 10;
-        }
+<meta charset="UTF-8">
 
-        /* Animación de fondo sorpresivo (color y brillo) */
-        @keyframes pulseBackground {
-            0%, 100% {
-                background: linear-gradient(135deg, #ff416c, #ff4b2b);
-                filter: brightness(1);
-            }
-            50% {
-                background: linear-gradient(135deg, #1f4037, #99f2c8);
-                filter: brightness(1.3);
-            }
-        }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        /* Contenedor principal del chat */
-        #mainApp {
-            display: none;
-            width: 90%;
-            max-width: 600px;
-            background-color: #1e1e1e;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(255,75,43,0.6);
-            padding: 20px;
-            height: 80vh;
-            display: flex;
-            flex-direction: column;
-        }
+<title>Para Emilia 💜</title>
 
-        /* Chat messages */
-        #chat {
-            flex-grow: 1;
-            overflow-y: auto;
-            padding-right: 10px;
-            margin-bottom: 15px;
-        }
+<style>
 
-        .message {
-            background-color: #ff4b2b;
-            padding: 12px 15px;
-            margin: 8px 0;
-            border-radius: 15px;
-            max-width: 80%;
-            font-size: 1rem;
-            line-height: 1.4;
-            box-shadow: 0 0 8px rgba(255,75,43,0.7);
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
 
-        .message.bot {
-            background-color: #ff7043;
-            align-self: flex-start;
-        }
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
 
-        .message.user {
-            background-color: #ff3b1f;
-            align-self: flex-end;
-        }
+body{
 
-        /* Input area */
-        #inputArea {
-            display: flex;
-            gap: 10px;
-        }
+background:
+linear-gradient(180deg,#4b0082,#6a0dad,#8a2be2,#b266ff);
 
-        #deviceInput {
-            flex-grow: 1;
-            padding: 10px 15px;
-            border-radius: 25px;
-            border: none;
-            font-size: 1rem;
-            outline: none;
-            box-shadow: 0 0 8px rgba(255,75,43,0.5);
-            background-color: #2a2a2a;
-            color: white;
-        }
+position:relative;
 
-        #sendBtn {
-            background-color: #ff4b2b;
-            border: none;
-            padding: 0 25px;
-            border-radius: 25px;
-            color: white;
-            font-weight: bold;
-            font-size: 1rem;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(255,75,43,0.9);
-            transition: background-color 0.3s ease;
-        }
+}
 
-        #sendBtn:hover {
-            background-color: #ff6f57;
-        }
+#fondo{
 
-        /* Scrollbar styling */
-        #chat::-webkit-scrollbar {
-            width: 8px;
-        }
-        #chat::-webkit-scrollbar-thumb {
-            background-color: #ff4b2b;
-            border-radius: 10px;
-        }
+position:fixed;
 
-        /* Responsive */
-        @media (max-width: 480px) {
-            #splash {
-                font-size: 1.8rem;
-            }
-            #mainApp {
-                height: 90vh;
-            }
-        }
-    </style>
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+overflow:hidden;
+
+z-index:1;
+
+}
+
+.mensaje{
+
+position:absolute;
+
+top:50%;
+
+left:50%;
+
+transform:translate(-50%,-50%);
+
+z-index:100;
+
+text-align:center;
+
+}
+
+.corazonBtn{
+
+width:150px;
+
+height:150px;
+
+border:none;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.15);
+
+backdrop-filter:blur(10px);
+
+font-size:90px;
+
+cursor:pointer;
+
+color:white;
+
+box-shadow:
+0 0 20px #ff7cff,
+0 0 40px #ff66ff,
+0 0 80px #ff99ff;
+
+transition:.3s;
+
+animation:latido 1.5s infinite;
+
+touch-action:manipulation;
+
+-webkit-tap-highlight-color:transparent;
+
+user-select:none;
+
+}
+
+.corazonBtn:hover{
+
+transform:scale(1.12);
+
+}
+
+.popup{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+background:rgba(0,0,0,.75);
+
+opacity:0;
+
+pointer-events:none;
+
+transition:.4s;
+
+z-index:999;
+
+}
+
+.popup.activo{
+
+opacity:1;
+
+pointer-events:auto;
+
+}
+
+.caja{
+
+width:90%;
+
+max-width:900px;
+
+padding:40px;
+
+border-radius:25px;
+
+background:rgba(255,255,255,.12);
+
+backdrop-filter:blur(18px);
+
+border:2px solid rgba(255,255,255,.25);
+
+box-shadow:0 0 40px rgba(255,120,255,.7);
+
+text-align:center;
+
+color:white;
+
+}
+
+.caja h1{
+
+font-size:60px;
+
+margin-bottom:25px;
+
+text-shadow:0 0 15px pink;
+
+}
+
+.caja p{
+
+font-size:28px;
+
+line-height:1.8;
+
+color:#ffe6ff;
+
+margin-bottom:25px;
+
+}.cerrar{
+
+padding:15px 35px;
+
+border:none;
+
+border-radius:15px;
+
+font-size:22px;
+
+background:#ff5db1;
+
+color:white;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.cerrar:hover{
+
+transform:scale(1.08);
+
+}
+
+.rosa{
+
+position:absolute;
+
+top:-80px;
+
+user-select:none;
+
+pointer-events:none;
+
+animation-name:caer;
+
+animation-timing-function:linear;
+
+animation-iteration-count:infinite;
+
+filter:drop-shadow(0 0 8px white);
+
+}
+
+.corazon{
+
+position:absolute;
+
+user-select:none;
+
+pointer-events:none;
+
+animation:brillo 2s infinite alternate;
+
+}
+
+@keyframes caer{
+
+0%{
+
+transform:translateY(-120px) rotate(0deg);
+
+opacity:0;
+
+}
+
+10%{
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(120vh) rotate(360deg);
+
+opacity:1;
+
+}
+
+}
+
+@keyframes latido{
+
+0%,100%{
+
+transform:scale(1);
+
+}
+
+50%{
+
+transform:scale(1.12);
+
+}
+
+}
+
+@keyframes brillo{
+
+from{
+
+opacity:.4;
+
+transform:scale(1);
+
+}
+
+to{
+
+opacity:1;
+
+transform:scale(1.4);
+
+}
+
+}
+
+</style>
+
 </head>
+
 <body>
 
-<div id="splash">
-    TUS MEJORES MODIFICACIONES PARA TU CELULAR
+<div id="fondo"></div>
+
+<div class="mensaje">
+
+<button class="corazonBtn" id="corazonBtn">
+
+💜
+
+</button>
+
 </div>
 
-<div id="mainApp">
-    <div id="chat">
-        <div class="message bot">¡Hola! 🌟 Soy MOD1F LUXT1N. Escribe el modelo y la marca de tu celular para recibir tu modificación personalizada para Free Fire.</div>
-    </div>
-    <div id="inputArea">
-        <input type="text" id="deviceInput" placeholder="Ejemplo: Xiaomi Redmi Note 10" />
-        <button id="sendBtn">Enviar</button>
-    </div>
+<div class="corazon" style="top:8%;left:12%;font-size:30px;">💖</div>
+
+<div class="corazon" style="top:18%;left:82%;font-size:28px;">💕</div>
+
+<div class="corazon" style="top:72%;left:15%;font-size:30px;">💗</div>
+
+<div class="corazon" style="top:82%;left:80%;font-size:28px;">💞</div>
+
+<div class="corazon" style="top:12%;left:50%;font-size:32px;">❤️</div>
+
+<div class="popup" id="popup">
+
+<div class="caja">
+
+<h1>💜 Emilia 💜</h1>
+
+<p>Quiero que sepas lo muchísimo que te quiero, Emilia. 💜
+
+Eres una persona muy especial para mí y me hace muy feliz
+tenerte como mi hermanastra.
+
+Gracias por cada risa, cada momento bonito y por ser
+como eres. Siempre podrás contar conmigo cuando me necesites.
+
+Espero que todos tus sueños se cumplan, que nunca te falten
+motivos para sonreír y que la vida te regale muchas alegrías.
+
+Te quiero muchísimo. 🌹❤️
+</p>
+
+<button class="cerrar" onclick="cerrarMensaje()">
+Cerrar 💜
+</button>
+
+</div>
+
 </div>
 
 <script>
-    const splash = document.getElementById('splash');
-    const mainApp = document.getElementById('mainApp');
-    const chat = document.getElementById('chat');
-    const input = document.getElementById('deviceInput');
-    const sendBtn = document.getElementById('sendBtn');
 
-    // Modificaciones predefinidas con instrucciones y sensibilidad para ejemplo
-    const modifications = {
-        'xiaomi redmi note 10': {
-            steps: [
-                "1. Abre la configuración del juego Free Fire.",
-                "2. Ve a la sección de Sensibilidad.",
-                "3. Ajusta la sensibilidad de la cámara a 85.",
-                "4. Ajusta la sensibilidad del general a 90.",
-                "5. Activa la opción 'Mejorar puntería' en las configuraciones avanzadas.",
-                "6. Instala el MOD1F LUXT1N en modo seguro (usa solo recursos mínimos).",
-                "7. Reinicia el juego para aplicar los cambios."
-            ],
-            sensitivity: {
-                general: 90,
-                red_dot: 85,
-                2x_scope: 80,
-                4x_scope: 75,
-                sniper: 70
-            }
-        },
-        'samsung galaxy s20': {
-            steps: [
-                "1. Abre Free Fire y entra a Configuración.",
-                "2. Selecciona Sensibilidad y coloca cámara en 88.",
-                "3. Ajusta sensibilidad general a 92 para mejor control.",
-                "4. Activa la opción 'Mejorar puntería automática'.",
-                "5. Aplica MOD1F LUXT1N siguiendo la guía interna.",
-                "6. Reinicia el dispositivo y el juego para asegurar la efectividad."
-            ],
-            sensitivity: {
-                general: 92,
-                red_dot: 87,
-                2x_scope: 82,
-                4x_scope: 78,
-                sniper: 72
-            }
-        }
-        // Puedes agregar más modelos aquí
-    };
+const fondo = document.getElementById("fondo");
 
-    // Función para añadir mensajes al chat
-    function addMessage(text, sender = 'bot') {
-        const msgDiv = document.createElement('div');
-        msgDiv.classList.add('message', sender);
-        msgDiv.textContent = text;
-        chat.appendChild(msgDiv);
-        chat.scrollTop = chat.scrollHeight;
+function crearRosa(){
+
+    const rosa = document.createElement("div");
+
+    rosa.className = "rosa";
+
+    rosa.innerHTML = Math.random() > 0.5 ? "🌹" : "🌸";
+
+    rosa.style.left = Math.random() * 100 + "vw";
+
+    rosa.style.fontSize = (25 + Math.random() * 35) + "px";
+
+    rosa.style.animationDuration = (4 + Math.random() * 6) + "s";
+
+    rosa.style.animationDelay = Math.random() * 2 + "s";
+
+    fondo.appendChild(rosa);
+
+    setTimeout(()=>{
+        rosa.remove();
+    },10000);
+
+}
+
+for(let i=0;i<100;i++){
+    crearRosa();
+}
+
+setInterval(()=>{
+    crearRosa();
+},120);const boton = document.getElementById("corazonBtn");
+const popup = document.getElementById("popup");
+
+function abrirMensaje(){
+    popup.classList.add("activo");
+}
+
+// Funciona con mouse
+boton.addEventListener("click", abrirMensaje);
+
+// Funciona con el dedo en celulares
+boton.addEventListener("touchstart", function(e){
+    e.preventDefault();
+    abrirMensaje();
+}, { passive:false });
+
+function cerrarMensaje(){
+    popup.classList.remove("activo");
+}
+
+// Cerrar al tocar fuera de la caja
+popup.addEventListener("click", function(e){
+    if(e.target === popup){
+        cerrarMensaje();
     }
+});
 
-    // Función para mostrar modificación paso a paso y sensibilidad
-    function showModification(device) {
-        const lowerDevice = device.toLowerCase();
-        if (modifications[lowerDevice]) {
-            const mod = modifications[lowerDevice];
-            addMessage(`Aquí está tu modificación personalizada MOD1F LUXT1N para tu ${device}:`, 'bot');
-
-            // Mostrar pasos uno por uno con pausa
-            let stepIndex = 0;
-            function showNextStep() {
-                if(stepIndex < mod.steps.length) {
-                    addMessage(mod.steps[stepIndex], 'bot');
-                    stepIndex++;
-                    setTimeout(showNextStep, 3000);
-                } else {
-                    // Mostrar sensibilidad recomendada
-                    const s = mod.sensitivity;
-                    let sensText = "Sensibilidad recomendada para Free Fire:\n";
-                    sensText += `- General: ${s.general}\n`;
-                    sensText += `- Mira roja: ${s.red_dot}\n`;
-                    sensText += `- Mira 2x: ${s['2x_scope']}\n`;
-                    sensText += `- Mira 4x: ${s['4x_scope']}\n`;
-                    sensText += `- Mira francotirador: ${s.sniper}\n`;
-                    sensText += "\nCon esta configuración, tendrás mayor probabilidad de pegar más rojos y ser imparable.";
-                    addMessage(sensText, 'bot');
-                }
-            }
-            showNextStep();
-        } else {
-            addMessage("Lo siento, aún no tengo una modificación para ese modelo. Pero pronto la tendremos disponible. 😉", 'bot');
-        }
+// Cerrar con la tecla ESC
+document.addEventListener("keydown", function(e){
+    if(e.key === "Escape"){
+        cerrarMensaje();
     }
+});
 
-    // Evento para enviar el input
-    sendBtn.addEventListener('click', () => {
-        const device = input.value.trim();
-        if(device === '') return;
-        addMessage(device, 'user');
-        input.value = '';
-        showModification(device);
-    });
-
-    input.addEventListener('keypress', (e) => {
-        if(e.key === 'Enter') sendBtn.click();
-    });
-
-    // Mostrar la app principal tras 5 segundos y ocultar splash
-    setTimeout(() => {
-        splash.style.display = 'none';
-        mainApp.style.display = 'flex';
-        input.focus();
-    }, 5000);
 </script>
 
 </body>
