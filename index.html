@@ -4,113 +4,40 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Para Emilia 💜</title>
+<title>Mis Hermanastros ❤️</title>
 
 <style>
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
 }
 
 html,body{
-    width:100%;
-    height:100%;
-    overflow:hidden;
+width:100%;
+height:100%;
+overflow:hidden;
 }
 
 body{
 
-background:
-linear-gradient(180deg,#4b0082,#6a0dad,#8a2be2,#b266ff);
+background:linear-gradient(135deg,#0f172a,#1e3a8a,#2563eb,#38bdf8);
 
-position:relative;
-
-}
-
-#fondo{
-
-position:fixed;
-
-top:0;
-left:0;
-
-width:100%;
-height:100%;
-
-overflow:hidden;
-
-z-index:1;
-
-}
-
-.mensaje{
-
-position:absolute;
-
-top:50%;
-
-left:50%;
-
-transform:translate(-50%,-50%);
-
-z-index:100;
-
-text-align:center;
-
-}
-
-.corazonBtn{
-
-width:150px;
-
-height:150px;
-
-border:none;
-
-border-radius:50%;
-
-background:rgba(255,255,255,.15);
-
-backdrop-filter:blur(10px);
-
-font-size:90px;
-
-cursor:pointer;
+display:flex;
+justify-content:center;
+align-items:center;
 
 color:white;
 
-box-shadow:
-0 0 20px #ff7cff,
-0 0 40px #ff66ff,
-0 0 80px #ff99ff;
-
-transition:.3s;
-
-animation:latido 1.5s infinite;
-
-touch-action:manipulation;
-
--webkit-tap-highlight-color:transparent;
-
-user-select:none;
-
 }
 
-.corazonBtn:hover{
+.pantalla{
 
-transform:scale(1.12);
-
-}
-
-.popup{
-
-position:fixed;
+position:absolute;
 
 top:0;
 left:0;
@@ -120,244 +47,251 @@ height:100%;
 
 display:flex;
 
+flex-direction:column;
+
 justify-content:center;
 
 align-items:center;
 
-background:rgba(0,0,0,.75);
-
-opacity:0;
-
-pointer-events:none;
-
-transition:.4s;
-
-z-index:999;
+transition:.5s;
 
 }
 
-.popup.activo{
+.oculta{
 
-opacity:1;
-
-pointer-events:auto;
+display:none;
 
 }
 
-.caja{
+h1{
 
-width:90%;
+font-size:55px;
 
-max-width:900px;
+margin-bottom:20px;
 
-padding:40px;
-
-border-radius:25px;
-
-background:rgba(255,255,255,.12);
-
-backdrop-filter:blur(18px);
-
-border:2px solid rgba(255,255,255,.25);
-
-box-shadow:0 0 40px rgba(255,120,255,.7);
-
-text-align:center;
-
-color:white;
+text-shadow:0 0 15px cyan;
 
 }
 
-.caja h1{
-
-font-size:60px;
-
-margin-bottom:25px;
-
-text-shadow:0 0 15px pink;
-
-}
-
-.caja p{
-
-font-size:28px;
-
-line-height:1.8;
-
-color:#ffe6ff;
-
-margin-bottom:25px;
-
-}.cerrar{
-
-padding:15px 35px;
-
-border:none;
-
-border-radius:15px;
+.subtitulo{
 
 font-size:22px;
 
-background:#ff5db1;
+margin-bottom:45px;
 
-color:white;
+color:#dbeafe;
+
+}
+
+button{
+
+width:330px;
+
+padding:22px;
+
+margin:18px;
+
+font-size:28px;
+
+border:none;
+
+border-radius:22px;
 
 cursor:pointer;
 
 transition:.3s;
 
+color:white;
+
+font-weight:bold;
+
 }
 
-.cerrar:hover{
+#btnEmilia{
+
+background:linear-gradient(90deg,#ec4899,#db2777);
+
+box-shadow:0 0 25px #ff7ac8;
+
+}
+
+#btnBasti{
+
+background:linear-gradient(90deg,#06b6d4,#2563eb);
+
+box-shadow:0 0 25px #60a5fa;
+
+}
+
+button:hover{
 
 transform:scale(1.08);
 
 }
 
-.rosa{
+.carta{
 
-position:absolute;
+background:rgba(255,255,255,.12);
 
-top:-80px;
+backdrop-filter:blur(12px);
 
-user-select:none;
+width:92%;
 
-pointer-events:none;
+max-width:900px;
 
-animation-name:caer;
+max-height:85vh;
 
-animation-timing-function:linear;
+overflow-y:auto;
 
-animation-iteration-count:infinite;
+padding:25px;
 
-filter:drop-shadow(0 0 8px white);
+border-radius:25px;
 
-}
+box-shadow:0 0 35px rgba(255,255,255,.35);
 
-.corazon{
+text-align:center;
 
-position:absolute;
-
-user-select:none;
-
-pointer-events:none;
-
-animation:brillo 2s infinite alternate;
+animation:aparecer .5s;
 
 }
 
-@keyframes caer{
+.carta h2{
 
-0%{
+font-size:38px;
 
-transform:translateY(-120px) rotate(0deg);
-
-opacity:0;
+margin-bottom:18px;
 
 }
 
-10%{
+.carta p{
 
-opacity:1;
+font-size:20px;
+
+line-height:1.7;
+
+color:#f1f5f9;
+
+white-space:pre-line;
+
+}
+.volver{
+
+margin-top:35px;
+
+background:linear-gradient(90deg,#22c55e,#16a34a);
+
+box-shadow:0 0 20px #4ade80;
+
+font-size:24px;
 
 }
 
-100%{
-
-transform:translateY(120vh) rotate(360deg);
-
-opacity:1;
-
-}
-
-}
-
-@keyframes latido{
-
-0%,100%{
-
-transform:scale(1);
-
-}
-
-50%{
-
-transform:scale(1.12);
-
-}
-
-}
-
-@keyframes brillo{
+@keyframes aparecer{
 
 from{
-
-opacity:.4;
-
-transform:scale(1);
-
+opacity:0;
+transform:scale(.9);
 }
 
 to{
-
 opacity:1;
-
-transform:scale(1.4);
-
+transform:scale(1);
 }
 
-}
-
-</style>
+}</style>
 
 </head>
 
 <body>
 
-<div id="fondo"></div>
+<audio id="musicaEmilia" src="Pensamientos - AIRBAG(M4A_128K).m4a"></audio>
 
-<div class="mensaje">
+<audio id="musicaBasti" src="sonido de daño de Minecraft(M4A_128K).m4a"></audio>
 
-<button class="corazonBtn" id="corazonBtn">
+<div id="menu" class="pantalla">
 
-💜
+<h1>❤️ Mi Familia ❤️</h1>
+
+<div class="subtitulo">
+
+Elige a quién quieres dedicarle una carta
+
+</div>
+
+<button id="btnEmilia">
+
+🌸 EMILIA LA MÁS BELLA 🌸
+
+</button>
+
+<button id="btnBasti">
+
+😤 BASTI EL MÁS ENOJÓN 😤
 
 </button>
 
 </div>
 
-<div class="corazon" style="top:8%;left:12%;font-size:30px;">💖</div>
+<div id="pantallaEmilia" class="pantalla oculta">
 
-<div class="corazon" style="top:18%;left:82%;font-size:28px;">💕</div>
+<div class="carta">
 
-<div class="corazon" style="top:72%;left:15%;font-size:30px;">💗</div>
+<h2>💜 Emilia 💜</h2>
 
-<div class="corazon" style="top:82%;left:80%;font-size:28px;">💞</div>
+<p>
 
-<div class="corazon" style="top:12%;left:50%;font-size:32px;">❤️</div>
-
-<div class="popup" id="popup">
-
-<div class="caja">
-
-<h1>💜 Emilia 💜</h1>
-
-<p>Quiero que sepas lo muchísimo que te quiero, Emilia. 💜
+Quiero que siempre recuerdes lo muchísimo que te quiero, Emilia. 💜
 
 Eres una persona muy especial para mí y me hace muy feliz
 tenerte como mi hermanastra.
 
 Gracias por cada risa, cada momento bonito y por ser
-como eres. Siempre podrás contar conmigo cuando me necesites.
+como eres.
 
 Espero que todos tus sueños se cumplan, que nunca te falten
-motivos para sonreír y que la vida te regale muchas alegrías.
+motivos para sonreír y que siempre seas muy feliz.
 
-Te quiero muchísimo. 🌹❤️
+Te quiero muchísimo. 🌸❤️
+
 </p>
 
-<button class="cerrar" onclick="cerrarMensaje()">
-Cerrar 💜
+<button class="volver" onclick="volverMenu()">
+
+⬅ Volver al menú
+
+</button>
+
+</div>
+
+</div>
+
+<div id="pantallaBasti" class="pantalla oculta">
+
+<div class="carta">
+
+<h2>💙 Basti 💙</h2>
+
+<p>Basti, aunque a veces seas el más enojón 😤,
+quiero que sepas que te quiero mucho.
+
+Me alegra tenerte como mi hermanastro y compartir
+momentos contigo.
+
+Espero que siempre te vaya muy bien, que cumplas
+todos tus sueños y que nunca te falten motivos
+para sonreír.
+
+Gracias por ser parte de mi vida.
+Siempre podrás contar conmigo.
+
+Te quiero mucho, Basti. 💙👊
+
+</p>
+
+<button class="volver" onclick="volverMenu()">
+
+⬅ Volver al menú
+
 </button>
 
 </div>
@@ -366,73 +300,78 @@ Cerrar 💜
 
 <script>
 
-const fondo = document.getElementById("fondo");
+const menu=document.getElementById("menu");
 
-function crearRosa(){
+const pantallaEmilia=document.getElementById("pantallaEmilia");
 
-    const rosa = document.createElement("div");
+const pantallaBasti=document.getElementById("pantallaBasti");
 
-    rosa.className = "rosa";
+const musicaEmilia=document.getElementById("musicaEmilia");
 
-    rosa.innerHTML = Math.random() > 0.5 ? "🌹" : "🌸";
+const musicaBasti=document.getElementById("musicaBasti");
 
-    rosa.style.left = Math.random() * 100 + "vw";
+document.getElementById("btnEmilia").onclick=function(){
 
-    rosa.style.fontSize = (25 + Math.random() * 35) + "px";
+musicaBasti.pause();
+musicaBasti.currentTime=0;
 
-    rosa.style.animationDuration = (4 + Math.random() * 6) + "s";
+musicaEmilia.currentTime=0;
+musicaEmilia.play();
 
-    rosa.style.animationDelay = Math.random() * 2 + "s";
+menu.classList.add("oculta");
 
-    fondo.appendChild(rosa);
+pantallaEmilia.classList.remove("oculta");
 
-    setTimeout(()=>{
-        rosa.remove();
-    },10000);
+};
+
+document.getElementById("btnBasti").onclick=function(){
+
+musicaEmilia.pause();
+musicaEmilia.currentTime=0;
+
+musicaBasti.currentTime=0;
+musicaBasti.play();
+
+menu.classList.add("oculta");
+
+pantallaBasti.classList.remove("oculta");
+
+};function volverMenu(){
+
+musicaEmilia.pause();
+musicaEmilia.currentTime=0;
+
+musicaBasti.pause();
+musicaBasti.currentTime=0;
+
+pantallaEmilia.classList.add("oculta");
+
+pantallaBasti.classList.add("oculta");
+
+menu.classList.remove("oculta");
 
 }
 
-for(let i=0;i<100;i++){
-    crearRosa();
+document.addEventListener("keydown",function(e){
+
+if(e.key==="Escape"){
+
+volverMenu();
+
 }
 
-setInterval(()=>{
-    crearRosa();
-},120);const boton = document.getElementById("corazonBtn");
-const popup = document.getElementById("popup");
-
-function abrirMensaje(){
-    popup.classList.add("activo");
-}
-
-// Funciona con mouse
-boton.addEventListener("click", abrirMensaje);
-
-// Funciona con el dedo en celulares
-boton.addEventListener("touchstart", function(e){
-    e.preventDefault();
-    abrirMensaje();
-}, { passive:false });
-
-function cerrarMensaje(){
-    popup.classList.remove("activo");
-}
-
-// Cerrar al tocar fuera de la caja
-popup.addEventListener("click", function(e){
-    if(e.target === popup){
-        cerrarMensaje();
-    }
 });
 
-// Cerrar con la tecla ESC
-document.addEventListener("keydown", function(e){
-    if(e.key === "Escape"){
-        cerrarMensaje();
-    }
-});
+// Permite reproducir la música después de la primera interacción del usuario
+document.addEventListener("click",function(){
+
+musicaEmilia.load();
+musicaBasti.load();
+
+},{once:true});
 
 </script>
 
 </body>
+
 </html>
