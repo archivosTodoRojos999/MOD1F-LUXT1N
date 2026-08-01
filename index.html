@@ -12,30 +12,22 @@
 <style>
 
 *{
-
 margin:0;
-
 padding:0;
-
 box-sizing:border-box;
-
 font-family:Arial,Helvetica,sans-serif;
-
 }
 
 html,body{
-
 width:100%;
-
 height:100%;
-
-overflow:hidden;
-
 }
 
 body{
 
 background:linear-gradient(135deg,#0f172a,#1e3a8a,#2563eb,#38bdf8);
+
+overflow:hidden;
 
 display:flex;
 
@@ -67,7 +59,9 @@ justify-content:center;
 
 align-items:center;
 
-transition:.5s;
+padding:20px;
+
+transition:.4s;
 
 }
 
@@ -79,49 +73,49 @@ display:none;
 
 h1{
 
-font-size:55px;
+font-size:48px;
 
-margin-bottom:20px;
+margin-bottom:15px;
 
-text-shadow:0 0 15px cyan;
+text-align:center;
 
 }
 
 .subtitulo{
 
-font-size:22px;
+font-size:20px;
 
-margin-bottom:45px;
-
-color:#dbeafe;
+margin-bottom:30px;
 
 text-align:center;
 
-padding:0 20px;
+color:#dbeafe;
 
 }
 
 button{
 
-width:330px;
+width:320px;
 
-padding:22px;
+max-width:90%;
 
-margin:15px;
+padding:18px;
 
-font-size:26px;
+margin:12px;
 
 border:none;
 
-border-radius:22px;
+border-radius:20px;
 
-cursor:pointer;
-
-transition:.3s;
+font-size:22px;
 
 font-weight:bold;
 
+cursor:pointer;
+
 color:white;
+
+transition:.25s;
 
 }
 
@@ -133,57 +127,45 @@ transform:scale(1.05);
 
 #btnEmilia{
 
-background:linear-gradient(90deg,#ec4899,#db2777);
-
-box-shadow:0 0 25px #ff7ac8;
+background:#e91e63;
 
 }
 
 #btnBasti{
 
-background:linear-gradient(90deg,#06b6d4,#2563eb);
-
-box-shadow:0 0 25px #60a5fa;
+background:#2196f3;
 
 }
 
 #btnWilson{
 
-background:linear-gradient(90deg,#16a34a,#22c55e);
-
-box-shadow:0 0 25px #4ade80;
+background:#4caf50;
 
 }
 
 #btnJanet{
 
-background:linear-gradient(90deg,#9333ea,#c026d3);
-
-box-shadow:0 0 25px #d946ef;
+background:#9c27b0;
 
 }
 
 .carta{
 
-background:rgba(255,255,255,.12);
-
-backdrop-filter:blur(14px);
-
 width:92%;
 
-max-width:900px;
+max-width:850px;
 
 max-height:85vh;
 
-overflow-y:auto;
+overflow:auto;
 
 padding:25px;
 
 border-radius:25px;
 
-box-shadow:0 0 35px rgba(255,255,255,.35);
+background:rgba(255,255,255,.12);
 
-animation:aparecer .5s;
+backdrop-filter:blur(10px);
 
 text-align:center;
 
@@ -191,7 +173,7 @@ text-align:center;
 
 .carta h2{
 
-font-size:42px;
+font-size:38px;
 
 margin-bottom:20px;
 
@@ -205,78 +187,39 @@ line-height:1.8;
 
 white-space:pre-line;
 
-color:#f8fafc;
-
-}.volver{
-
-margin-top:30px;
-
-background:linear-gradient(90deg,#22c55e,#16a34a);
-
-box-shadow:0 0 20px #4ade80;
-
-font-size:22px;
-
 }
 
-@keyframes aparecer{
+.volver{
 
-from{
+background:#ff9800;
 
-opacity:0;
-
-transform:scale(.9);
-
-}
-
-to{
-
-opacity:1;
-
-transform:scale(1);
-
-}
+margin-top:25px;
 
 }
 
 @media(max-width:600px){
 
 h1{
-
-font-size:38px;
-
+font-size:34px;
 }
 
 .subtitulo{
-
-font-size:18px;
-
+font-size:17px;
 }
 
 button{
-
-width:90%;
-
-font-size:21px;
-
-padding:18px;
-
+font-size:18px;
 }
 
 .carta h2{
-
 font-size:30px;
-
 }
 
 .carta p{
-
-font-size:18px;
-
+font-size:17px;
 }
 
 }
-
 </style>
 
 </head>
@@ -291,34 +234,24 @@ font-size:18px;
 
 <h1>❤️ Mi Familia ❤️</h1>
 
-<div class="subtitulo">
-
+<p class="subtitulo">
 Elige una persona para leer su carta 💌
-
-</div>
+</p>
 
 <button id="btnEmilia">
-
 🌸 EMILIA LA MÁS BELLA 🌸
-
 </button>
 
 <button id="btnBasti">
-
 😤 BASTI EL MÁS ENOJÓN 😤
-
 </button>
 
 <button id="btnWilson">
-
 👨 WILSON ❤️
-
 </button>
 
 <button id="btnJanet">
-
-🌹 JANET 💖
-
+💖 JANET 💖
 </button>
 
 </div>
@@ -334,20 +267,18 @@ Elige una persona para leer su carta 💌
 Eres una persona muy especial para mí y me hace muy feliz
 tenerte como mi hermanastra.
 
-Gracias por cada risa, por cada momento bonito y por ser
-como eres.
+Gracias por cada sonrisa, cada risa y cada momento bonito
+que hemos compartido.
 
-Espero que todos tus sueños se cumplan, que nunca te falten
-motivos para sonreír y que siempre seas muy feliz.
+Espero que todos tus sueños se cumplan y que siempre seas
+muy feliz.
 
 Te quiero muchísimo. 🌸❤️
 
 </p>
 
 <button class="volver" onclick="volverMenu()">
-
 ⬅ Volver al menú
-
 </button>
 
 </div>
@@ -368,11 +299,9 @@ quiero que sepas que te quiero mucho.
 Me alegra tenerte como mi hermanastro y compartir
 momentos contigo.
 
-Espero que siempre te vaya muy bien,
-que cumplas todos tus sueños y que nunca
-te falten motivos para sonreír.
-
-Gracias por ser parte de mi vida.
+Espero que siempre te vaya muy bien, que cumplas
+todo lo que te propongas y que nunca pierdas
+esa fuerza que tienes.
 
 Siempre podrás contar conmigo.
 
@@ -381,9 +310,7 @@ Te quiero mucho. 💙👊
 </p>
 
 <button class="volver" onclick="volverMenu()">
-
 ⬅ Volver al menú
-
 </button>
 
 </div>
@@ -396,27 +323,23 @@ Te quiero mucho. 💙👊
 
 <h2>👨 Wilson ❤️</h2>
 
-<p>
+<p>Papá, quiero que sepas lo mucho que te quiero.
 
-Papá, quiero que sepas lo mucho que te quiero.
+Gracias por estar siempre a mi lado,
+por cuidarme y por hacer tantas cosas por mí.
 
-Gracias por cuidarme, enseñarme y hacer
-tantas cosas por mí.
+Valoro mucho cada esfuerzo que haces
+y siempre voy a agradecer todo lo que me enseñas.
 
-Valoro mucho cada esfuerzo que haces y
-espero que siempre tengas salud, felicidad
-y muchos momentos bonitos.
-
-Gracias por ser mi papá.
+Espero que tengas mucha salud,
+mucha felicidad y que siempre sonrías.
 
 Te quiero muchísimo. ❤️
 
 </p>
 
 <button class="volver" onclick="volverMenu()">
-
 ⬅ Volver al menú
-
 </button>
 
 </div>
@@ -427,25 +350,25 @@ Te quiero muchísimo. ❤️
 
 <div class="carta">
 
-<h2>🌹 Janet 💖</h2>
+<h2>💖 Janet 💖</h2>
 
-<p>Janet, quiero agradecerte por formar parte de mi vida.
+<p>
 
-Gracias por cada momento compartido,
-por tu apoyo y por todo lo bueno que haces.
+Janet, quiero agradecerte por formar parte de mi vida.
+
+Gracias por tu cariño, por los momentos compartidos
+y por todo lo bueno que haces.
 
 Espero que siempre seas muy feliz,
-que cumplas todos tus sueños y que nunca
-te falten razones para sonreír.
+que cumplas todos tus sueños
+y que nunca te falten motivos para sonreír.
 
 Te quiero mucho y deseo que siempre te vaya muy bien. 💖
 
 </p>
 
 <button class="volver" onclick="volverMenu()">
-
 ⬅ Volver al menú
-
 </button>
 
 </div>
@@ -474,146 +397,74 @@ musicaBasti.currentTime=0;
 
 }
 
-document.getElementById("btnEmilia").onclick=function(){
-
-detenerMusica();
-
-musicaEmilia.play();
-
-menu.classList.add("oculta");
-
-pantallaEmilia.classList.remove("oculta");
-
-};
-
-document.getElementById("btnBasti").onclick=function(){
-
-detenerMusica();
-
-musicaBasti.play();
-
-menu.classList.add("oculta");
-
-pantallaBasti.classList.remove("oculta");
-
-};
-
-document.getElementById("btnWilson").onclick=function(){
-
-detenerMusica();
-
-menu.classList.add("oculta");
-
-pantallaWilson.classList.remove("oculta");
-
-};
-
-document.getElementById("btnJanet").onclick=function(){
-
-detenerMusica();
-
-menu.classList.add("oculta");
-
-pantallaJanet.classList.remove("oculta");
-
-};Janet, quiero agradecerte por formar parte de mi vida.
-
-Gracias por cada momento compartido,
-por tu apoyo y por todo lo bueno que haces.
-
-Espero que siempre seas muy feliz,
-que cumplas todos tus sueños y que nunca
-te falten razones para sonreír.
-
-Te quiero mucho y deseo que siempre te vaya muy bien. 💖
-
-</p>
-
-<button class="volver" onclick="volverMenu()">
-
-⬅ Volver al menú
-
-</button>
-
-</div>
-
-</div>
-
-<script>
-
-const menu=document.getElementById("menu");
-
-const pantallaEmilia=document.getElementById("pantallaEmilia");
-const pantallaBasti=document.getElementById("pantallaBasti");
-const pantallaWilson=document.getElementById("pantallaWilson");
-const pantallaJanet=document.getElementById("pantallaJanet");
-
-const musicaEmilia=document.getElementById("musicaEmilia");
-const musicaBasti=document.getElementById("musicaBasti");
-
-function detenerMusica(){
-
-musicaEmilia.pause();
-musicaEmilia.currentTime=0;
-
-musicaBasti.pause();
-musicaBasti.currentTime=0;
-
-}
-
-document.getElementById("btnEmilia").onclick=function(){
-
-detenerMusica();
-
-musicaEmilia.play();
-
-menu.classList.add("oculta");
-
-pantallaEmilia.classList.remove("oculta");
-
-};
-
-document.getElementById("btnBasti").onclick=function(){
-
-detenerMusica();
-
-musicaBasti.play();
-
-menu.classList.add("oculta");
-
-pantallaBasti.classList.remove("oculta");
-
-};
-
-document.getElementById("btnWilson").onclick=function(){
-
-detenerMusica();
-
-menu.classList.add("oculta");
-
-pantallaWilson.classList.remove("oculta");
-
-};
-
-document.getElementById("btnJanet").onclick=function(){
-
-detenerMusica();
-
-menu.classList.add("oculta");
-
-pantallaJanet.classList.remove("oculta");function volverMenu(){
-
-detenerMusica();
+function ocultarPantallas(){
 
 pantallaEmilia.classList.add("oculta");
 pantallaBasti.classList.add("oculta");
 pantallaWilson.classList.add("oculta");
 pantallaJanet.classList.add("oculta");
 
+}document.getElementById("btnEmilia").addEventListener("click",function(){
+
+ocultarPantallas();
+
+menu.classList.add("oculta");
+
+pantallaEmilia.classList.remove("oculta");
+
+detenerMusica();
+
+musicaEmilia.play().catch(()=>{});
+
+});
+
+document.getElementById("btnBasti").addEventListener("click",function(){
+
+ocultarPantallas();
+
+menu.classList.add("oculta");
+
+pantallaBasti.classList.remove("oculta");
+
+detenerMusica();
+
+musicaBasti.play().catch(()=>{});
+
+});
+
+document.getElementById("btnWilson").addEventListener("click",function(){
+
+ocultarPantallas();
+
+menu.classList.add("oculta");
+
+pantallaWilson.classList.remove("oculta");
+
+detenerMusica();
+
+});
+
+document.getElementById("btnJanet").addEventListener("click",function(){
+
+ocultarPantallas();
+
+menu.classList.add("oculta");
+
+pantallaJanet.classList.remove("oculta");
+
+detenerMusica();
+
+});
+
+function volverMenu(){
+
+detenerMusica();
+
+ocultarPantallas();
+
 menu.classList.remove("oculta");
 
-}
-
+}// Permitir volver al menú con la tecla ESC
 document.addEventListener("keydown",function(e){
 
 if(e.key==="Escape"){
@@ -624,10 +475,22 @@ volverMenu();
 
 });
 
-// Permite reproducir la música después de la primera interacción
+// Cerrar la música cuando la pestaña pierde el foco
+document.addEventListener("visibilitychange",function(){
+
+if(document.hidden){
+
+detenerMusica();
+
+}
+
+});
+
+// Cargar los audios después de la primera interacción
 document.addEventListener("click",function(){
 
 musicaEmilia.load();
+
 musicaBasti.load();
 
 },{once:true});
@@ -637,5 +500,3 @@ musicaBasti.load();
 </body>
 
 </html>
-
-};
