@@ -5,50 +5,64 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<title>Mi Familia ❤️</title>
+<title>❤️ Mi Familia ❤️</title>
 
 <style>
 
 *{
+
 margin:0;
 padding:0;
 box-sizing:border-box;
 font-family:Arial,Helvetica,sans-serif;
+
 }
 
 html,body{
+
 width:100%;
 height:100%;
+
 }
 
 body{
 
-background:linear-gradient(135deg,#0f172a,#1e3a8a,#2563eb,#38bdf8);
+background:url("familia.jpg") center center / cover no-repeat fixed;
 
 overflow:hidden;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
 
 color:white;
 
 }
 
-.pantalla{
+.fondo{
 
-position:absolute;
+position:fixed;
 
 top:0;
-
 left:0;
 
 width:100%;
+height:100%;
 
+background:rgba(0,0,0,.45);
+
+backdrop-filter:blur(3px);
+
+z-index:0;
+
+}
+
+.pantalla{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
 height:100%;
 
 display:flex;
@@ -59,7 +73,9 @@ justify-content:center;
 
 align-items:center;
 
-padding:20px;
+padding:25px;
+
+z-index:1;
 
 transition:.4s;
 
@@ -73,117 +89,121 @@ display:none;
 
 h1{
 
-font-size:48px;
-
-margin-bottom:15px;
+font-size:65px;
 
 text-align:center;
+
+text-shadow:0 0 20px black;
+
+margin-bottom:15px;
 
 }
 
 .subtitulo{
 
-font-size:20px;
-
-margin-bottom:30px;
+font-size:28px;
 
 text-align:center;
 
-color:#dbeafe;
+margin-bottom:40px;
+
+text-shadow:0 0 10px black;
 
 }
 
 button{
 
-width:320px;
+width:95%;
 
-max-width:90%;
+max-width:700px;
 
-padding:18px;
+padding:28px;
 
-margin:12px;
+margin:18px;
 
 border:none;
 
-border-radius:20px;
+border-radius:30px;
 
-font-size:22px;
+font-size:32px;
 
 font-weight:bold;
 
 cursor:pointer;
 
-color:white;
-
 transition:.25s;
+
+color:white;
 
 }
 
-button:hover{
+button:active{
 
-transform:scale(1.05);
+transform:scale(.96);
 
 }
 
 #btnEmilia{
 
-background:#e91e63;
+background:linear-gradient(90deg,#ff4fa0,#ff1971);
 
 }
 
 #btnBasti{
 
-background:#2196f3;
+background:linear-gradient(90deg,#2196f3,#1565c0);
 
 }
 
 #btnWilson{
 
-background:#4caf50;
+background:linear-gradient(90deg,#4caf50,#2e7d32);
 
 }
 
 #btnJanet{
 
-background:#9c27b0;
+background:linear-gradient(90deg,#b5179e,#7209b7);
 
 }
 
 .carta{
 
-width:92%;
+width:96%;
 
-max-width:850px;
+height:92%;
 
-max-height:85vh;
-
-overflow:auto;
-
-padding:25px;
-
-border-radius:25px;
-
-background:rgba(255,255,255,.12);
+background:rgba(0,0,0,.60);
 
 backdrop-filter:blur(10px);
 
-text-align:center;
+border-radius:25px;
+
+padding:35px;
+
+overflow-y:auto;
+
+box-shadow:0 0 30px rgba(255,255,255,.25);
 
 }
 
 .carta h2{
 
-font-size:38px;
+font-size:55px;
 
-margin-bottom:20px;
+text-align:center;
+
+margin-bottom:25px;
 
 }
 
 .carta p{
 
-font-size:20px;
+font-size:30px;
 
-line-height:1.8;
+line-height:1.9;
+
+text-align:center;
 
 white-space:pre-line;
 
@@ -191,40 +211,53 @@ white-space:pre-line;
 
 .volver{
 
-background:#ff9800;
+margin-top:30px;
 
-margin-top:25px;
+background:linear-gradient(90deg,#ff9800,#ff5722);
 
 }
 
-@media(max-width:600px){
+@media(max-width:700px){
 
 h1{
-font-size:34px;
+
+font-size:46px;
+
 }
 
 .subtitulo{
-font-size:17px;
+
+font-size:23px;
+
 }
 
 button{
-font-size:18px;
+
+font-size:25px;
+
+padding:24px;
+
 }
 
 .carta h2{
-font-size:30px;
+
+font-size:40px;
+
 }
 
 .carta p{
-font-size:17px;
-}
+
+font-size:24px;
 
 }
-</style>
+
+}</style>
 
 </head>
 
 <body>
+
+<div class="fondo"></div>
 
 <audio id="musicaEmilia" src="Pensamientos - AIRBAG(M4A_128K).m4a"></audio>
 
@@ -235,23 +268,33 @@ font-size:17px;
 <h1>❤️ Mi Familia ❤️</h1>
 
 <p class="subtitulo">
-Elige una persona para leer su carta 💌
+
+Toca el nombre de la persona para leer su carta 💌
+
 </p>
 
 <button id="btnEmilia">
+
 🌸 EMILIA LA MÁS BELLA 🌸
+
 </button>
 
 <button id="btnBasti">
+
 😤 BASTI EL MÁS ENOJÓN 😤
+
 </button>
 
 <button id="btnWilson">
+
 👨 WILSON ❤️
+
 </button>
 
 <button id="btnJanet">
+
 💖 JANET 💖
+
 </button>
 
 </div>
@@ -267,18 +310,22 @@ Elige una persona para leer su carta 💌
 Eres una persona muy especial para mí y me hace muy feliz
 tenerte como mi hermanastra.
 
-Gracias por cada sonrisa, cada risa y cada momento bonito
-que hemos compartido.
+Gracias por cada risa, por cada momento bonito y por ser
+como eres.
 
-Espero que todos tus sueños se cumplan y que siempre seas
-muy feliz.
+Espero que todos tus sueños se cumplan, que nunca te falten
+motivos para sonreír y que siempre seas muy feliz.
+
+Nunca olvides que puedes contar conmigo.
 
 Te quiero muchísimo. 🌸❤️
 
 </p>
 
 <button class="volver" onclick="volverMenu()">
+
 ⬅ Volver al menú
+
 </button>
 
 </div>
@@ -297,11 +344,11 @@ Basti, aunque a veces seas el más enojón 😤,
 quiero que sepas que te quiero mucho.
 
 Me alegra tenerte como mi hermanastro y compartir
-momentos contigo.
+tantos momentos contigo.
 
-Espero que siempre te vaya muy bien, que cumplas
-todo lo que te propongas y que nunca pierdas
-esa fuerza que tienes.
+Espero que siempre te vaya muy bien,
+que cumplas todos tus sueños y que nunca
+te rindas.
 
 Siempre podrás contar conmigo.
 
@@ -310,7 +357,9 @@ Te quiero mucho. 💙👊
 </p>
 
 <button class="volver" onclick="volverMenu()">
+
 ⬅ Volver al menú
+
 </button>
 
 </div>
@@ -325,21 +374,25 @@ Te quiero mucho. 💙👊
 
 <p>Papá, quiero que sepas lo mucho que te quiero.
 
-Gracias por estar siempre a mi lado,
-por cuidarme y por hacer tantas cosas por mí.
+Gracias por estar siempre conmigo,
+por cuidarme y por enseñarme tantas cosas.
 
 Valoro mucho cada esfuerzo que haces
-y siempre voy a agradecer todo lo que me enseñas.
+y todo el cariño que me das.
 
-Espero que tengas mucha salud,
-mucha felicidad y que siempre sonrías.
+Espero que siempre tengas salud,
+felicidad y muchos momentos bonitos.
+
+Siempre voy a estar agradecido por tenerte como mi papá.
 
 Te quiero muchísimo. ❤️
 
 </p>
 
 <button class="volver" onclick="volverMenu()">
+
 ⬅ Volver al menú
+
 </button>
 
 </div>
@@ -356,19 +409,21 @@ Te quiero muchísimo. ❤️
 
 Janet, quiero agradecerte por formar parte de mi vida.
 
-Gracias por tu cariño, por los momentos compartidos
-y por todo lo bueno que haces.
+Gracias por tu cariño,
+por tu apoyo y por compartir tantos momentos conmigo.
 
 Espero que siempre seas muy feliz,
-que cumplas todos tus sueños
-y que nunca te falten motivos para sonreír.
+que todos tus sueños se hagan realidad
+y que nunca te falten sonrisas.
 
 Te quiero mucho y deseo que siempre te vaya muy bien. 💖
 
 </p>
 
 <button class="volver" onclick="volverMenu()">
+
 ⬅ Volver al menú
+
 </button>
 
 </div>
@@ -397,7 +452,7 @@ musicaBasti.currentTime=0;
 
 }
 
-function ocultarPantallas(){
+function ocultarTodo(){
 
 pantallaEmilia.classList.add("oculta");
 pantallaBasti.classList.add("oculta");
@@ -406,7 +461,7 @@ pantallaJanet.classList.add("oculta");
 
 }document.getElementById("btnEmilia").addEventListener("click",function(){
 
-ocultarPantallas();
+ocultarTodo();
 
 menu.classList.add("oculta");
 
@@ -414,13 +469,15 @@ pantallaEmilia.classList.remove("oculta");
 
 detenerMusica();
 
+musicaEmilia.currentTime=0;
+
 musicaEmilia.play().catch(()=>{});
 
 });
 
 document.getElementById("btnBasti").addEventListener("click",function(){
 
-ocultarPantallas();
+ocultarTodo();
 
 menu.classList.add("oculta");
 
@@ -428,13 +485,15 @@ pantallaBasti.classList.remove("oculta");
 
 detenerMusica();
 
+musicaBasti.currentTime=0;
+
 musicaBasti.play().catch(()=>{});
 
 });
 
 document.getElementById("btnWilson").addEventListener("click",function(){
 
-ocultarPantallas();
+ocultarTodo();
 
 menu.classList.add("oculta");
 
@@ -446,7 +505,7 @@ detenerMusica();
 
 document.getElementById("btnJanet").addEventListener("click",function(){
 
-ocultarPantallas();
+ocultarTodo();
 
 menu.classList.add("oculta");
 
@@ -460,11 +519,11 @@ function volverMenu(){
 
 detenerMusica();
 
-ocultarPantallas();
+ocultarTodo();
 
 menu.classList.remove("oculta");
 
-}// Permitir volver al menú con la tecla ESC
+}// Permitir volver con la tecla ESC
 document.addEventListener("keydown",function(e){
 
 if(e.key==="Escape"){
@@ -475,7 +534,34 @@ volverMenu();
 
 });
 
-// Cerrar la música cuando la pestaña pierde el foco
+// Animación de entrada
+function mostrarPantalla(pantalla){
+
+pantalla.style.opacity="0";
+
+pantalla.classList.remove("oculta");
+
+setTimeout(function(){
+
+pantalla.style.opacity="1";
+
+},20);
+
+}
+
+// Mejorar el desplazamiento en celular
+document.querySelectorAll(".carta").forEach(function(carta){
+
+carta.style.webkitOverflowScrolling="touch";
+
+});
+
+// Evitar seleccionar texto accidentalmente
+document.addEventListener("selectstart",function(e){
+
+e.preventDefault();
+
+});// Si la página vuelve a mostrarse, detener la música
 document.addEventListener("visibilitychange",function(){
 
 if(document.hidden){
@@ -486,7 +572,7 @@ detenerMusica();
 
 });
 
-// Cargar los audios después de la primera interacción
+// Cargar los audios tras la primera interacción
 document.addEventListener("click",function(){
 
 musicaEmilia.load();
@@ -494,6 +580,13 @@ musicaEmilia.load();
 musicaBasti.load();
 
 },{once:true});
+
+// Evitar arrastrar elementos
+document.addEventListener("dragstart",function(e){
+
+e.preventDefault();
+
+});
 
 </script>
 
