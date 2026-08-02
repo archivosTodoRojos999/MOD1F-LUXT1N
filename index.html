@@ -2,598 +2,235 @@
 <html lang="es">
 
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<title>❤️ La Familia pobre❤️</title>
-
-<style>
-
-*{
-
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,Helvetica,sans-serif;
-
-}
-
-html,body{
-
-width:100%;
-height:100%;
-
-}
-
-body{
-
-body{
-    background-image: url("IMG-20260731-WA0142.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover; /* o contain si prefieres verla completa */
-    background-color: black;
-}
-overflow:hidden;
-
-color:white;
-
-}
-
-.fondo{
-
-position:fixed;
-
-top:0;
-left:0;
-
-width:100%;
-height:100%;
-
-background:rgba(0,0,0,.45);
-
-backdrop-filter:blur(3px);
-
-z-index:0;
-
-}
-
-.pantalla{
-
-position:fixed;
-
-top:0;
-left:0;
-
-width:100%;
-height:100%;
-
-display:flex;
-
-flex-direction:column;
-
-justify-content:center;
-
-align-items:center;
-
-padding:25px;
-
-z-index:1;
-
-transition:.4s;
-
-}
-
-.oculta{
-
-display:none;
-
-}
-
-h1{
-
-font-size:65px;
-
-text-align:center;
-
-text-shadow:0 0 20px black;
-
-margin-bottom:15px;
-
-}
-
-.subtitulo{
-
-font-size:28px;
-
-text-align:center;
-
-margin-bottom:40px;
-
-text-shadow:0 0 10px black;
-
-}
-
-button{
-
-width:95%;
-
-max-width:700px;
-
-padding:28px;
-
-margin:18px;
-
-border:none;
-
-border-radius:30px;
-
-font-size:32px;
-
-font-weight:bold;
-
-cursor:pointer;
-
-transition:.25s;
-
-color:white;
-
-}
-
-button:active{
-
-transform:scale(.96);
-
-}
-
-#btnEmilia{
-
-background:linear-gradient(90deg,#ff4fa0,#ff1971);
-
-}
-
-#btnBasti{
-
-background:linear-gradient(90deg,#2196f3,#1565c0);
-
-}
-
-#btnWilson{
-
-background:linear-gradient(90deg,#4caf50,#2e7d32);
-
-}
-
-#btnJanet{
-
-background:linear-gradient(90deg,#b5179e,#7209b7);
-
-}
-
-.carta{
-
-width:96%;
-
-height:92%;
-
-background:rgba(0,0,0,.60);
-
-backdrop-filter:blur(10px);
-
-border-radius:25px;
-
-padding:35px;
-
-overflow-y:auto;
-
-box-shadow:0 0 30px rgba(255,255,255,.25);
-
-}
-
-.carta h2{
-
-font-size:55px;
-
-text-align:center;
-
-margin-bottom:25px;
-
-}
-
-.carta p{
-
-font-size:30px;
-
-line-height:1.9;
-
-text-align:center;
-
-white-space:pre-line;
-
-}
-
-.volver{
-
-margin-top:30px;
-
-background:linear-gradient(90deg,#ff9800,#ff5722);
-
-}
-
-@media(max-width:700px){
-
-h1{
-
-font-size:46px;
-
-}
-
-.subtitulo{
-
-font-size:23px;
-
-}
-
-button{
-
-font-size:25px;
-
-padding:24px;
-
-}
-
-.carta h2{
-
-font-size:40px;
-
-}
-
-.carta p{
-
-font-size:24px;
-
-}
-
-}</style>
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Para mi Bella Princesa Yasmin</title>
+
+    <style>
+        /* Fuentes y reset básico */
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #f9d5e5, #f6e0f2);
+            color: #4a2c2a;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: #d94e67;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(217, 78, 103, 0.6);
+        }
+
+        header h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            text-shadow: 2px 3px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        header p {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            font-style: italic;
+        }
+
+        main {
+            flex-grow: 1;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        section {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(217, 78, 103, 0.2);
+            padding: 30px 40px;
+            margin-bottom: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(217, 78, 103, 0.35);
+        }
+
+        section h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.8rem;
+            color: #d94e67;
+            margin-bottom: 15px;
+            text-align: center;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        section p {
+            font-size: 1.2rem;
+            color: #5a3a3f;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: #d94e67;
+            font-weight: 700;
+        }
+
+        .image-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .image-container img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(217, 78, 103, 0.25);
+        }
+
+        footer {
+            background: #d94e67;
+            color: white;
+            text-align: center;
+            padding: 20px 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            box-shadow: 0 -4px 10px rgba(217, 78, 103, 0.6);
+        }
+
+        .heart {
+            color: #ff3b5c;
+            margin-left: 8px;
+            animation: pulse 1.5s infinite;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.3);
+            }
+        }
+
+        /* Responsivo */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2.8rem;
+            }
+
+            section {
+                padding: 20px;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            section p {
+                font-size: 1rem;
+            }
+
+            .image-container img {
+                max-width: 100%;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="fondo"></div>
-
-<audio id="musicaEmilia" src="Pensamientos - AIRBAG(M4A_128K).m4a"></audio>
-
-<audio id="musicaBasti" src="sonido de daño de Minecraft(M4A_128K).m4a"></audio>
-
-<div id="menu" class="pantalla">
-
-<h1>❤️ Mi Familia ❤️</h1>
-
-<p class="subtitulo">
-
-Toca el nombre de la persona para leer su carta 💌
-
-</p>
-
-<button id="btnEmilia">
-
-🌸 EMILIA LA MÁS BELLA 🌸
-
-</button>
-
-<button id="btnBasti">
-
-😤 BASTI EL MÁS ENOJÓN 😤
-
-</button>
-
-<button id="btnWilson">
-
-👨 WILSON (MONO)❤️
-
-</button>
-
-<button id="btnJanet">
-
-💖 JANET (VACA)💖
-
-</button>
-
-</div>
-
-<div id="pantallaEmilia" class="pantalla oculta">
-
-<div class="carta">
-
-<h2>💜 Emilia 💜</h2>
-
-<p>Quiero que siempre recuerdes lo muchísimo que te quiero, Emilia. 💜
-
-Eres una persona muy especial para mí y me hace muy feliz
-tenerte como mi hermanastra.
-
-Gracias por cada risa, por cada momento bonito y por ser
-como eres.
-
-Espero que todos tus sueños se cumplan, que nunca te falten
-motivos para sonreír y que siempre seas muy feliz.
-
-Nunca olvides que puedes contar conmigo.
-
-Te quiero muchísimo. 🌸❤️
-
-</p>
-
-<button class="volver" onclick="volverMenu()">
-
-⬅ Volver al menú
-
-</button>
-
-</div>
-
-</div>
-
-<div id="pantallaBasti" class="pantalla oculta">
-
-<div class="carta">
-
-<h2>💙 Basti 💙</h2>
-
-<p>
-
-Basti, aunque a veces seas el más enojón 😤,
-quiero que sepas que te quiero mucho.
-
-Me alegra tenerte como mi hermanastro y compartir
-tantos momentos contigo.
-
-Espero que siempre te vaya muy bien,
-que cumplas todos tus sueños y que nunca
-te rindas.
-
-Siempre podrás contar conmigo.
-
-Te quiero mucho. 💙👊
-
-</p>
-
-<button class="volver" onclick="volverMenu()">
-
-⬅ Volver al menú
-
-</button>
-
-</div>
-
-</div>
-
-<div id="pantallaWilson" class="pantalla oculta">
-
-<div class="carta">
-
-<h2>👨 Wilson ❤️</h2>
-
-<p>Papá, quiero que sepas lo mucho que te quiero.
-
-Gracias por estar siempre conmigo,
-por cuidarme y por enseñarme tantas cosas.
-
-Valoro mucho cada esfuerzo que haces
-y todo el cariño que me das.
-
-Espero que siempre tengas salud,
-felicidad y muchos momentos bonitos.
-
-Siempre voy a estar agradecido por tenerte como mi papá.
-
-Te quiero muchísimo. ❤️
-
-</p>
-
-<button class="volver" onclick="volverMenu()">
-
-⬅ Volver al menú
-
-</button>
-
-</div>
-
-</div>
-
-<div id="pantallaJanet" class="pantalla oculta">
-
-<div class="carta">
-
-<h2>💖 Janet 💖</h2>
-
-<p>
-
-Janet, quiero agradecerte por formar parte de mi vida.
-
-Gracias por tu cariño,
-por tu apoyo y por compartir tantos momentos conmigo.
-
-Espero que siempre seas muy feliz,
-que todos tus sueños se hagan realidad
-y que nunca te falten sonrisas.
-
-Te quiero mucho y deseo que siempre te vaya muy bien. 💖
-
-</p>
-
-<button class="volver" onclick="volverMenu()">
-
-⬅ Volver al menú
-
-</button>
-
-</div>
-
-</div>
-
-<script>
-
-const menu=document.getElementById("menu");
-
-const pantallaEmilia=document.getElementById("pantallaEmilia");
-const pantallaBasti=document.getElementById("pantallaBasti");
-const pantallaWilson=document.getElementById("pantallaWilson");
-const pantallaJanet=document.getElementById("pantallaJanet");
-
-const musicaEmilia=document.getElementById("musicaEmilia");
-const musicaBasti=document.getElementById("musicaBasti");
-
-function detenerMusica(){
-
-musicaEmilia.pause();
-musicaEmilia.currentTime=0;
-
-musicaBasti.pause();
-musicaBasti.currentTime=0;
-
-}
-
-function ocultarTodo(){
-
-pantallaEmilia.classList.add("oculta");
-pantallaBasti.classList.add("oculta");
-pantallaWilson.classList.add("oculta");
-pantallaJanet.classList.add("oculta");
-
-}document.getElementById("btnEmilia").addEventListener("click",function(){
-
-ocultarTodo();
-
-menu.classList.add("oculta");
-
-pantallaEmilia.classList.remove("oculta");
-
-detenerMusica();
-
-musicaEmilia.currentTime=0;
-
-musicaEmilia.play().catch(()=>{});
-
-});
-
-document.getElementById("btnBasti").addEventListener("click",function(){
-
-ocultarTodo();
-
-menu.classList.add("oculta");
-
-pantallaBasti.classList.remove("oculta");
-
-detenerMusica();
-
-musicaBasti.currentTime=0;
-
-musicaBasti.play().catch(()=>{});
-
-});
-
-document.getElementById("btnWilson").addEventListener("click",function(){
-
-ocultarTodo();
-
-menu.classList.add("oculta");
-
-pantallaWilson.classList.remove("oculta");
-
-detenerMusica();
-
-});
-
-document.getElementById("btnJanet").addEventListener("click",function(){
-
-ocultarTodo();
-
-menu.classList.add("oculta");
-
-pantallaJanet.classList.remove("oculta");
-
-detenerMusica();
-
-});
-
-function volverMenu(){
-
-detenerMusica();
-
-ocultarTodo();
-
-menu.classList.remove("oculta");
-
-}// Permitir volver con la tecla ESC
-document.addEventListener("keydown",function(e){
-
-if(e.key==="Escape"){
-
-volverMenu();
-
-}
-
-});
-
-// Animación de entrada
-function mostrarPantalla(pantalla){
-
-pantalla.style.opacity="0";
-
-pantalla.classList.remove("oculta");
-
-setTimeout(function(){
-
-pantalla.style.opacity="1";
-
-},20);
-
-}
-
-// Mejorar el desplazamiento en celular
-document.querySelectorAll(".carta").forEach(function(carta){
-
-carta.style.webkitOverflowScrolling="touch";
-
-});
-
-// Evitar seleccionar texto accidentalmente
-document.addEventListener("selectstart",function(e){
-
-e.preventDefault();
-
-});// Si la página vuelve a mostrarse, detener la música
-document.addEventListener("visibilitychange",function(){
-
-if(document.hidden){
-
-detenerMusica();
-
-}
-
-});
-
-// Cargar los audios tras la primera interacción
-document.addEventListener("click",function(){
-
-musicaEmilia.load();
-
-musicaBasti.load();
-
-},{once:true});
-
-// Evitar arrastrar elementos
-document.addEventListener("dragstart",function(e){
-
-e.preventDefault();
-
-});
-
-</script>
+    <header>
+        <h1>Para mi Bella Princesa Yasmin</h1>
+        <p>La más bonita y hermosa del mundo</p>
+    </header>
+
+    <main>
+
+        <section>
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+                    alt="Flor hermosa" />
+            </div>
+
+            <h2>Tu Belleza Ilumina Mi Vida</h2>
+
+            <p>
+                Yasmin, cada día contigo es un regalo lleno de luz y amor.
+                Tu sonrisa es como el sol que
+                <span class="highlight">ilumina</span>
+                los días más oscuros y tu mirada es un refugio de paz.
+            </p>
+        </section>
+
+        <section>
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=400&q=80"
+                    alt="Corazón rojo" />
+            </div>
+
+            <h2>El Corazón Que Me Inspira</h2>
+
+            <p>
+                Eres la inspiración detrás de cada uno de mis sueños y la fuerza
+                que me impulsa a ser mejor. Mi corazón late más fuerte porque tú
+                existes, mi princesa hermosa.
+            </p>
+        </section>
+
+        <section>
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=80"
+                    alt="Cielo rosa" />
+            </div>
+
+            <h2>Un Amor Sin Límites</h2>
+
+            <p>
+                No hay en el mundo nadie tan especial como tú.
+                Mi amor por ti es infinito, más allá de las estrellas,
+                y cada momento a tu lado es un tesoro que guardo en mi corazón
+                para siempre.
+            </p>
+        </section>
+
+        <section>
+            <h2>Gracias por Ser Tú</h2>
+
+            <p>
+                Gracias por tu dulzura, tu alegría y tu luz.
+                Gracias por ser la princesa que llena mi mundo de magia.
+                Este sitio es solo un pequeño reflejo de todo lo que siento por ti,
+                Yasmin.
+            </p>
+        </section>
+
+    </main>
+
+    <footer>
+        Con todo mi amor infinito
+        <span class="heart">❤️</span>
+    </footer>
 
 </body>
 
