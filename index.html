@@ -1,336 +1,265 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Liverity —Aterrador </title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Luxtin S4nc1 - Generador de Sensibilidades para Freefire</title>
     <style>
-        body {
+        /* Reset y estilos básicos */
+        body, html {
             margin: 0;
-            overflow: hidden;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
-            font-family: 'Segoe UI', sans-serif;
+            padding: 0;
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #121212;
+            color: #eee;
         }
-        #canvas-container {
-            width: 100vw;
-            height: 100vh;
-            position: relative;
+
+        .centered {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            flex-direction: column;
         }
-        .overlay {
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-            color: white;
+
+        #splashScreen {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            height: 100%;
+            width: 100%;
+            position: fixed;
             z-index: 10;
-            pointer-events: none;
-        }
-        .titulo {
-            font-size: 2.2rem;
+            flex-direction: column;
+            gap: 20px;
+            font-size: 3rem;
             font-weight: bold;
-            text-shadow: 0 0 15px rgba(100, 200, 255, 0.7);
-            margin-bottom: 8px;
+            letter-spacing: 0.2em;
+            color: white;
+            animation: fadeIn 1.5s ease forwards;
         }
-        .subtitulo {
-            font-size: 1.1rem;
-            opacity: 0.85;
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        .contador {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #fff;
-            font-size: 1.3rem;
-            background: rgba(0,0,0,0.4);
-            padding: 10px 25px;
-            border-radius: 30px;
-            border: 1px solid rgba(255,255,255,0.2);
-            z-index: 10;
-            transition: all 0.5s ease;
+
+        #mainApp {
+            display: none;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
         }
-        .aterrador-activo {
-            color: #ff4444 !important;
-            text-shadow: 0 0 12px #ff0000;
-            background: rgba(60,0,0,0.5) !important;
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: 600;
         }
-        .borde-contorno {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 260px;
-            height: 290px;
-            border: 3px solid rgba(100, 200, 255, 0.5);
-            border-radius: 30%;
-            box-shadow: 0 0 30px rgba(100, 200, 255, 0.35), inset 0 0 30px rgba(100, 200, 255, 0.15);
-            pointer-events: none;
-            transition: all 1.2s ease;
-            z-index: 5;
+
+        select, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            background-color: #222;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            font-size: 1rem;
         }
-        .borde-aterrador {
-            border-color: rgba(255, 60, 60, 0.7);
-            box-shadow: 0 0 40px rgba(255, 0, 0, 0.5), inset 0 0 40px rgba(180, 0, 0, 0.25);
-            animation: bordePulsante 0.7s infinite alternate;
+
+        button {
+            margin-top: 20px;
+            background: #2575fc;
+            cursor: pointer;
+            font-weight: 700;
+            transition: background 0.3s ease;
         }
-        @keyframes bordePulsante {
-            from { opacity: 0.6; }
-            to { opacity: 1; }
+
+        button:hover {
+            background: #4591ff;
         }
-        .transformacion-alerta {
-            animation: alerta 0.5s ease-in-out 4;
-        }
-        @keyframes alerta {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.2; }
+
+        #result {
+            margin-top: 25px;
+            background: #222;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            white-space: pre-wrap;
         }
     </style>
 </head>
 <body>
-
-    <div id="canvas-container"></div>
-
-    <!-- Título y contorno -->
-    <div class="overlay">
-        <h1 class="titulo" id="titulo">Cabeza — Liverity</h1>
-        <p class="subtitulo">🔄 Arrastra para girar en 360° | Rueda para acercar/alejar</p>
+    <!-- Pantalla de inicio con logo animado -->
+    <div id="splashScreen" class="centered">
+        <div>LUXT1N</div>
+        <div>S4NC1</div>
+        <small>Generador Profesional de Sensibilidades</small>
     </div>
 
-    <div class="borde-contorno" id="contorno"></div>
+    <!-- Pantalla principal -->
+    <div id="mainApp">
+        <h1>Generador de Sensibilidades para Free Fire</h1>
 
-    <div class="contador" id="contador">
-        ⏱️ Transformación en <span id="segundos">10</span> segundos...
+        <label for="deviceBrand">Selecciona la Marca:</label>
+        <select id="deviceBrand" required>
+            <option value="" disabled selected>Elige una marca</option>
+            <option value="Samsung">Samsung</option>
+            <option value="Xiaomi">Xiaomi</option>
+            <option value="Apple">Apple</option>
+            <option value="OnePlus">OnePlus</option>
+            <option value="Huawei">Huawei</option>
+            <option value="Oppo">Oppo</option>
+            <option value="Realme">Realme</option>
+            <option value="Vivo">Vivo</option>
+            <!-- Puedes agregar más marcas -->
+        </select>
+
+        <label for="deviceModel">Selecciona el Modelo:</label>
+        <select id="deviceModel" required>
+            <option value="" disabled selected>Elige un modelo</option>
+        </select>
+
+        <label for="sensibility">Selecciona Sensibilidad:</label>
+        <select id="sensibility" required>
+            <option value="" disabled selected>Elige sensibilidad</option>
+            <option value="baja">Baja (Precisión corto alcance)</option>
+            <option value="alta">Alta (Precisión largo alcance)</option>
+        </select>
+
+        <button id="generateBtn">Generar Sensibilidad "Tipo Hacker"</button>
+
+        <div id="result"></div>
     </div>
 
     <script>
-        // === CONFIGURACIÓN DE TIEMPO ===
-        const TIEMPO_TRANSFORMACION = 10;
-        let tiempoRestante = TIEMPO_TRANSFORMACION;
-        let esAterrador = false;
-
-        // === ESCENA, CÁMARA Y RENDERIZADOR ===
-        const escena = new THREE.Scene();
-        const camara = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderizador = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-
-        renderizador.setSize(window.innerWidth, window.innerHeight);
-        renderizador.setPixelRatio(window.devicePixelRatio);
-        document.getElementById('canvas-container').appendChild(renderizador.domElement);
-
-        // === LUCES ===
-        const luzAmbiental = new THREE.AmbientLight(0xffffff, 0.6);
-        escena.add(luzAmbiental);
-
-        const luzDireccional = new THREE.DirectionalLight(0xffffff, 1);
-        luzDireccional.position.set(5, 7, 5);
-        escena.add(luzDireccional);
-
-        const luzRelleno = new THREE.DirectionalLight(0x88aaff, 0.3);
-        luzRelleno.position.set(-4, 3, -4);
-        escena.add(luzRelleno);
-
-        // === GRUPO DE LA CABEZA ===
-        const cabezaGrupo = new THREE.Group();
-        cabezaGrupo.position.y = 0.5;
-        escena.add(cabezaGrupo);
-
-        // === COLORES — VERSIÓN NORMAL ===
-        const coloresNormal = {
-            piel: 0xf0c8a0,
-            pelo: 0x4a3020,
-            ojos: 0x2255aa,
-            contorno: 0x64c8ff
+        // Modelos por marca para ejemplo
+        const modelsByBrand = {
+            Samsung: ['Galaxy S21', 'Galaxy Note 20', 'Galaxy A52', 'Galaxy S10'],
+            Xiaomi: ['Redmi Note 10', 'Mi 11', 'Poco X3', 'Redmi 9'],
+            Apple: ['iPhone 13', 'iPhone 12', 'iPhone SE', 'iPhone 11'],
+            OnePlus: ['9 Pro', 'Nord 2', '8T', '7T Pro'],
+            Huawei: ['P40', 'Mate 30', 'Nova 7', 'Y9a'],
+            Oppo: ['Find X3', 'Reno 5', 'A54', 'F19 Pro'],
+            Realme: ['GT', '8 Pro', 'Narzo 30', 'X7 Max'],
+            Vivo: ['X60', 'V21', 'Y20', 'S9']
         };
 
-        // === COLORES — VERSIÓN ATERRADORA ===
-        const coloresAterrador = {
-            piel: 0x3a2030,
-            pelo: 0x1a0a10,
-            ojos: 0xff2222,
-            contorno: 0xff3333
-        };
+        // Elementos del DOM
+        const deviceBrandSelect = document.getElementById('deviceBrand');
+        const deviceModelSelect = document.getElementById('deviceModel');
+        const sensibilitySelect = document.getElementById('sensibility');
+        const resultDiv = document.getElementById('result');
+        const generateBtn = document.getElementById('generateBtn');
 
-        // === CREACIÓN DE LA CABEZA ===
-        let partes = {};
+        // Al seleccionar marca actualiza modelos
+        deviceBrandSelect.addEventListener('change', () => {
+            const brand = deviceBrandSelect.value;
+            deviceModelSelect.innerHTML = '<option value="" disabled selected>Elige un modelo</option>';
 
-        function crearCabeza(colores) {
-            // Limpiar si ya existe
-            while (cabezaGrupo.children.length > 0) {
-                cabezaGrupo.remove(cabezaGrupo.children[0]);
-            }
-
-            // Esfera principal (cabeza)
-            const geoCabeza = new THREE.SphereGeometry(1, 32, 32);
-            const matCabeza = new THREE.MeshPhongMaterial({ color: colores.piel, shininess: 25 });
-            partes.cabeza = new THREE.Mesh(geoCabeza, matCabeza);
-            cabezaGrupo.add(partes.cabeza);
-
-            // Cabello
-            const geoPelo = new THREE.SphereGeometry(1.03, 32, 32, 0, Math.PI * 2, 0, Math.PI / 2);
-            const matPelo = new THREE.MeshPhongMaterial({ color: colores.pelo, shininess: 10, side: THREE.DoubleSide });
-            partes.pelo = new THREE.Mesh(geoPelo, matPelo);
-            partes.pelo.position.y = 0.35;
-            cabezaGrupo.add(partes.pelo);
-
-            // Ojos
-            const geoOjo = new THREE.SphereGeometry(0.11, 16, 16);
-            const matOjo = new THREE.MeshPhongMaterial({ color: colores.ojos, emissive: colores.ojos, emissiveIntensity: 0.3 });
-
-            partes.ojoIzq = new THREE.Mesh(geoOjo, matOjo);
-            partes.ojoIzq.position.set(-0.33, 0.12, 0.88);
-            cabezaGrupo.add(partes.ojoIzq);
-
-            partes.ojoDer = new THREE.Mesh(geoOjo, matOjo.clone());
-            partes.ojoDer.position.set(0.33, 0.12, 0.88);
-            cabezaGrupo.add(partes.ojoDer);
-
-            // Boca / expresión
-            const geoBoca = esAterrador 
-                ? new THREE.TorusGeometry(0.22, 0.025, 8, 20, Math.PI)
-                : new THREE.TorusGeometry(0.16, 0.022, 8, 16, Math.PI);
-            const matBoca = new THREE.MeshPhongMaterial({ 
-                color: esAterrador ? 0x990000 : 0xd49578,
-                emissive: esAterrador ? 0x440000 : 0x000000,
-                emissiveIntensity: esAterrador ? 0.4 : 0
-            });
-            partes.boca = new THREE.Mesh(geoBoca, matBoca);
-            partes.boca.position.set(0, -0.28, 0.86);
-            partes.boca.rotation.x = Math.PI;
-            cabezaGrupo.add(partes.boca);
-        }
-
-        // === INICIALIZAR CABEZA NORMAL ===
-        crearCabeza(coloresNormal);
-
-        // === CÁMARA ===
-        camara.position.set(0, 0.5, 3.2);
-        camara.lookAt(0, 0.5, 0);
-
-        // === CONTROLES DE ROTACIÓN ===
-        let arrastrando = false;
-        let ultimoX = 0, ultimoY = 0;
-        let rotacionX = 0, rotacionY = 0.25;
-        const sensibilidad = 0.006;
-
-        function actualizarRotacion() {
-            cabezaGrupo.rotation.y = rotacionX;
-            cabezaGrupo.rotation.x = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, rotacionY));
-        }
-
-        // Eventos ratón
-        window.addEventListener('mousedown', e => {
-            arrastrando = true;
-            ultimoX = e.clientX;
-            ultimoY = e.clientY;
-        });
-        window.addEventListener('mouseup', () => arrastrando = false);
-        window.addEventListener('mousemove', e => {
-            if (!arrastrando) return;
-            const dx = e.clientX - ultimoX;
-            const dy = e.clientY - ultimoY;
-            rotacionX += dx * sensibilidad;
-            rotacionY += dy * sensibilidad;
-            actualizarRotacion();
-            ultimoX = e.clientX;
-            ultimoY = e.clientY;
-        });
-
-        // Rueda para acercar/alejar
-        window.addEventListener('wheel', e => {
-            camara.position.z = Math.max(2, Math.min(6, camara.position.z + e.deltaY * 0.004));
-        });
-
-        // Táctil
-        window.addEventListener('touchstart', e => {
-            if (e.touches.length === 1) {
-                arrastrando = true;
-                ultimoX = e.touches[0].clientX;
-                ultimoY = e.touches[0].clientY;
+            if (modelsByBrand[brand]) {
+                modelsByBrand[brand].forEach(model => {
+                    const option = document.createElement('option');
+                    option.value = model;
+                    option.textContent = model;
+                    deviceModelSelect.appendChild(option);
+                });
             }
         });
-        window.addEventListener('touchend', () => arrastrando = false);
-        window.addEventListener('touchmove', e => {
-            if (!arrastrando || e.touches.length !== 1) return;
-            const dx = e.touches[0].clientX - ultimoX;
-            const dy = e.touches[0].clientY - ultimoY;
-            rotacionX += dx * sensibilidad;
-            rotacionY += dy * sensibilidad;
-            actualizarRotacion();
-            ultimoX = e.touches[0].clientX;
-            ultimoY = e.touches[0].clientY;
-            e.preventDefault();
+
+        // Función para simular una sensibilidad calibrada tipo hacker
+        function generateSensitivity(brand, model, sensibility) {
+            // Base valores para diferentes marcas y modelos
+            // Estos valores son simulados y podrían ajustarse con datos reales
+            const baseSensibility = {
+                Samsung: 40,
+                Xiaomi: 45,
+                Apple: 38,
+                OnePlus: 42,
+                Huawei: 43,
+                Oppo: 44,
+                Realme: 41,
+                Vivo: 40
+            };
+
+            const modelModifier = model.length % 10; // simple variación por modelo
+
+            // Ajustes para baja y alta sensibilidad
+            let sensitivityValue;
+            if (sensibility === 'baja') {
+                // Baja sensibilidad: más precisión en corto alcance
+                sensitivityValue = baseSensibility[brand] - 5 + modelModifier * 0.5;
+            } else {
+                // Alta sensibilidad: mejor para alcance largo y disparos a la cabeza
+                sensitivityValue = baseSensibility[brand] + 5 + modelModifier * 0.7;
+            }
+
+            // Ajuste fino para disparos a la cabeza
+            const headshotMultiplier = sensibility === 'alta' ? 1.15 : 1.05;
+            const finalSensitivity = (sensitivityValue * headshotMultiplier).toFixed(2);
+
+            // Retornar configuración detallada
+            return {
+                marca: brand,
+                modelo: model,
+                sensibilidad: sensibility === 'alta'
+                    ? 'Alta Precisión Largo Alcance'
+                    : 'Baja Precisión Corto Alcance',
+                sensibilidadValor: finalSensitivity,
+                descripcion: `Sensibilidad calibrada para disparos a la cabeza 100% rojos. Optimizada para ${
+                    sensibility === 'alta'
+                        ? 'alcance largo y precisión máxima'
+                        : 'alcance corto y precisión en espacios reducidos'
+                }.`
+            };
+        }
+
+        // Acción al pulsar botón de generar
+        generateBtn.addEventListener('click', () => {
+            const brand = deviceBrandSelect.value;
+            const model = deviceModelSelect.value;
+            const sens = sensibilitySelect.value;
+
+            if (!brand || !model || !sens) {
+                alert('Por favor, selecciona todas las opciones.');
+                return;
+            }
+
+            const config = generateSensitivity(brand, model, sens);
+
+            // Mostrar resultado formateado
+            resultDiv.textContent =
+                `Marca: ${config.marca}\n` +
+                `Modelo: ${config.modelo}\n` +
+                `Tipo de Sensibilidad: ${config.sensibilidad}\n` +
+                `Valor de Sensibilidad: ${config.sensibilidadValor}\n\n` +
+                `${config.descripcion}`;
         });
 
-        // === CONTADOR Y TRANSFORMACIÓN ===
-        const elementoContador = document.getElementById('contador');
-        const elementoSegundos = document.getElementById('segundos');
-        const elementoTitulo = document.getElementById('titulo');
-        const elementoContorno = document.getElementById('contorno');
+        // Animación y sonido de entrada
+        window.addEventListener('load', () => {
+            const splash = document.getElementById('splashScreen');
 
-        const intervalo = setInterval(() => {
-            tiempoRestante--;
-            elementoSegundos.textContent = tiempoRestante;
+            // Sonido de entrada
+            const audioCtx = new AudioContext();
+            const oscillator = audioCtx.createOscillator();
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(440, audioCtx.currentTime);
+            oscillator.connect(audioCtx.destination);
+            oscillator.start();
+            oscillator.stop(audioCtx.currentTime + 0.15);
 
-            if (tiempoRestante <= 4) {
-                elementoContador.classList.add('transformacion-alerta');
-            }
-
-            if (tiempoRestante <= 0) {
-                clearInterval(intervalo);
-                activarTransformacion();
-            }
-        }, 1000);
-
-        function activarTransformacion() {
-            esAterrador = true;
-            
-            // Recrear cabeza con aspecto aterrador
-            crearCabeza(coloresAterrador);
-
-            // Cambiar UI
-            elementoTitulo.textContent = "☠️ LIVERY — FORMA ATERRADORA ☠️";
-            elementoContorno.classList.add('borde-aterrador');
-            elementoContador.textContent = "⚠️ TRANSFORMACIÓN COMPLETA ⚠️";
-            elementoContador.classList.add('aterrador-activo');
-            elementoContador.classList.remove('transformacion-alerta');
-
-            // Efecto de luces tenebrosas
-            luzDireccional.intensity = 0.7;
-            luzDireccional.color.setHex(0xff6644);
-            luzAmbiental.intensity = 0.35;
-            luzAmbiental.color.setHex(0x442233);
-
-            // Animación de rotación automática continua
-            animacionTransformacion();
-        }
-
-        function animacionTransformacion() {
-            let tiempo = 0;
-            function girar() {
-                if (!esAterrador) return;
-                tiempo += 0.016;
-                cabezaGrupo.rotation.y += 0.008;
-                cabezaGrupo.position.y = 0.5 + Math.sin(tiempo * 2) * 0.08;
-                requestAnimationFrame(girar);
-            }
-            girar();
-        }
-
-        // === BUCLE DE ANIMACIÓN ===
-        function animar() {
-            requestAnimationFrame(animar);
-            renderizador.render(escena, camara);
-        }
-        animar();
-
-        // === AJUSTE DE TAMAÑO ===
-        window.addEventListener('resize', () => {
-            camara.aspect = window.innerWidth / window.innerHeight;
-            camara.updateProjectionMatrix();
-            renderizador.setSize(window.innerWidth, window.innerHeight);
+            // Ocultar pantalla de inicio y mostrar app principal
+            setTimeout(() => {
+                splash.style.display = 'none';
+                document.getElementById('mainApp').style.display = 'block';
+            }, 2500);
         });
     </script>
 </body>
