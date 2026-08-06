@@ -49,12 +49,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.92);
+            background: rgba(0, 0, 0, 0.95);
             display: none;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            z-index: 100;
+            z-index: 9999;
         }
 
         .loader-circle {
@@ -525,9 +525,8 @@
         // Generar sensibilidad completa (6 valores de 0 a 200)
         function generateSensitivity(brand, model, sensibility) {
             const base = baseSens[brand] || 140;
-            const mod = (model.length % 7) - 3; // ajuste por modelo
+            const mod = (model.length % 7) - 3;
 
-            // Niveles de sensibilidad
             const nivel = {
                 baja: { mult: 0.85, nombre: 'Baja - Precisión Corto Alcance' },
                 media: { mult: 1.00, nombre: 'Media - Equilibrada' },
@@ -537,7 +536,6 @@
 
             const n = nivel[sensibilidad];
 
-            // Cálculo de cada valor (limitado entre 0 y 200)
             const general = Math.min(200, Math.round((base + mod) * n.mult));
             const puntoRojo = Math.min(200, Math.round((base - 3 + mod) * n.mult));
             const mira2x = Math.min(200, Math.round((base - 8 + mod) * n.mult));
@@ -573,14 +571,14 @@
             loadingScreen.style.display = 'flex';
             resultDiv.innerHTML = '';
 
-            // ⏳ ESPERA 4 SEGUNDOS EXACTOS y luego muestra el resultado
+            // ⏳ 4 segundos exactos
             setTimeout(() => {
                 const config = generateSensitivity(brand, model, sens);
 
-                // Oculta la pantalla de carga
+                // ✅ OCULTA la pantalla de carga
                 loadingScreen.style.display = 'none';
 
-                // Muestra la sensibilidad
+                // ✅ MUESTRA la sensibilidad
                 resultDiv.innerHTML = `
                     <div class="result-title">🎯 SENSIBILIDAD CALIBRADA</div>
                     📱 Marca: ${config.marca}<br>
@@ -596,7 +594,7 @@
                     ──────────────────────────────<br>
                     <small>🔥 Valores calibrados de 0 a 200 optimizados para levantar mira a la cabeza</small>
                 `;
-            }, 4000); // ⏱️ 4000 milisegundos = 4 segundos
+            }, 4000);
         });
 
         // Pantalla de inicio
