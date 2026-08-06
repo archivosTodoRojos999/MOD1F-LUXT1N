@@ -42,6 +42,41 @@
             20%, 80% { opacity: 1; }
         }
 
+        /* Pantalla de carga al generar */
+        #loadingScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 100;
+        }
+
+        .loader-circle {
+            width: 90px;
+            height: 90px;
+            border: 6px solid #222;
+            border-top-color: #ff0000;
+            border-radius: 50%;
+            animation: spin 1.2s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            margin-top: 25px;
+            font-size: 1.2rem;
+            color: #ff0000;
+            letter-spacing: 0.15em;
+        }
+
         /* Contenedor principal */
         #mainApp {
             display: none;
@@ -86,16 +121,31 @@
             margin-top: 25px;
             background-color: #ff0000;
             font-weight: 900;
+            font-size: 1.15rem;
+            padding: 14px;
         }
 
         #result {
             margin-top: 30px;
             background-color: #111;
-            padding: 20px;
-            border-radius: 8px;
-            font-family: monospace;
+            padding: 25px;
+            border-radius: 10px;
+            font-family: 'Segoe UI', monospace;
             white-space: pre-wrap;
-            box-shadow: 0 0 15px #ff0000;
+            box-shadow: 0 0 20px #ff0000;
+            border: 1px solid #ff3333;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .result-title {
+            color: #ff0000;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-align: center;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ff3333;
+            padding-bottom: 8px;
         }
 
         /* Scroll para la lista de modelos si es muy larga */
@@ -111,6 +161,12 @@
         <div id="logoText">LUXT1N S4NC1</div>
     </div>
 
+    <!-- Pantalla de carga al generar -->
+    <div id="loadingScreen">
+        <div class="loader-circle"></div>
+        <div class="loading-text">CALIBRANDO SENSIBILIDAD...</div>
+    </div>
+
     <!-- Pantalla principal -->
     <div id="mainApp">
         <h1>Generador de Sensibilidades para Free Fire</h1>
@@ -122,7 +178,8 @@
             <option value="Xiaomi">Xiaomi / Redmi / Poco</option>
             <option value="Apple">iPhone (Apple)</option>
             <option value="OnePlus">OnePlus</option>
-            <option value="Huawei">Huawei / Honor</option>
+            <option value="Huawei">Huawei</option>
+            <option value="Honor">Honor</option>
             <option value="Oppo">Oppo</option>
             <option value="Realme">Realme</option>
             <option value="Vivo">Vivo / iQOO</option>
@@ -133,16 +190,56 @@
             <option value="Asus">Asus / ROG</option>
             <option value="Lenovo">Lenovo</option>
             <option value="LG">LG</option>
-            <option value="ZTE">ZTE / Nubia</option>
+            <option value="ZTE">ZTE / Nubia / Red Magic</option>
             <option value="BlackBerry">BlackBerry</option>
             <option value="Tecno">Tecno</option>
             <option value="Infinix">Infinix</option>
             <option value="Meizu">Meizu</option>
-            <option value="Honor">Honor (independiente)</option>
             <option value="Nothing">Nothing</option>
             <option value="Fairphone">Fairphone</option>
-            <option value="RedMagic">Red Magic</option>
             <option value="BlackShark">Black Shark</option>
+            <option value="UMIDIGI">UMIDIGI</option>
+            <option value="Cubot">Cubot</option>
+            <option value="Doogee">Doogee</option>
+            <option value="Oukitel">Oukitel</option>
+            <option value="Leagoo">Leagoo</option>
+            <option value="Ulefone">Ulefone</option>
+            <option value="Xiaolajiao">Xiaolajiao</option>
+            <option value="Vivo">Vsmart</option>
+            <option value="ZUK">ZUK</option>
+            <option value="Coolpad">Coolpad</option>
+            <option value="Gionee">Gionee</option>
+            <option value="Haier">Haier</option>
+            <option value="Hisense">Hisense</option>
+            <option value="Konka">Konka</option>
+            <option value="Meitu">Meitu</option>
+            <option value="Pantech">Pantech</option>
+            <option value="Sharp">Sharp</option>
+            <option value="TCL">TCL / Alcatel</option>
+            <option value="Wiko">Wiko</option>
+            <option value="Xolo">Xolo</option>
+            <option value="Lava">Lava</option>
+            <option value="Panasonic">Panasonic</option>
+            <option value="Philips">Philips</option>
+            <option value="Positivo">Positivo</option>
+            <option value="Multilaser">Multilaser</option>
+            <option value="QMobile">QMobile</option>
+            <option value="Symphony">Symphony</option>
+            <option value="Maxcom">Maxcom</option>
+            <option value="MyPhone">MyPhone</option>
+            <option value="Strawberry">Strawberry</option>
+            <option value="Neffos">Neffos</option>
+            <option value="Cat">Cat (Caterpillar)</option>
+            <option value="Kyocera">Kyocera</option>
+            <option value="Fujitsu">Fujitsu</option>
+            <option value="NEC">NEC</option>
+            <option value="Casio">Casio</option>
+            <option value="Vertu">Vertu</option>
+            <option value="Sirin">Sirin Labs</option>
+            <option value="Turbo">Turbo</option>
+            <option value="Bgh">BGH</option>
+            <option value="Noblex">Noblex</option>
+            <option value="Kaios">Teléfonos con KaiOS</option>
             <!-- Puedes ampliar más -->
         </select>
 
@@ -160,13 +257,13 @@
             <option value="maxima">Máxima (Todo rojo / Cabeza)</option>
         </select>
 
-        <button id="generateBtn">Generar Sensibilidad Calibrada "Tipo Hacker"</button>
+        <button id="generateBtn">🔧 Generar Sensibilidad Calibrada</button>
 
         <div id="result"></div>
     </div>
 
     <script>
-        // LISTA AMPLIADA DE TODOS LOS CELULARES PRINCIPALES DEL MERCADO
+        // LISTA COMPLETA DE MARCAS Y MODELOS
         const modelsByBrand = {
             Samsung: [
                 'Galaxy S24 Ultra', 'Galaxy S24+', 'Galaxy S24',
@@ -221,8 +318,12 @@
                 'Huawei P60 Pro', 'P60 Art', 'P60', 'P50 Pro', 'P50', 'P40 Pro+', 'P40 Pro', 'P40',
                 'Mate 60 Pro', 'Mate 60', 'Mate 50 Pro', 'Mate 50', 'Mate 40 Pro+', 'Mate 40 Pro', 'Mate 30 Pro',
                 'Nova 12 Pro', 'Nova 11', 'Nova 10', 'Nova 9', 'Nova 7',
-                'Honor 50', 'Honor 30', 'Honor 20', 'Honor View 20',
                 'Huawei Y9a', 'Y7a', 'Y6 Pro'
+            ],
+            Honor: [
+                'Honor Magic 6 Pro', 'Magic 5 Pro',
+                'Honor 200 Pro', '100 Pro', '90', 'X9b', 'X8b',
+                'Honor Play 50 Plus'
             ],
             Oppo: [
                 'Find X7 Ultra', 'Find X6 Pro', 'Find X5 Pro', 'Find X3 Pro',
@@ -307,52 +408,105 @@
                 'Meizu 18s Pro', '18 Pro', '17 Pro',
                 'Meizu 16s Pro', '16X'
             ],
-            Honor: [
-                'Honor Magic 6 Pro', 'Magic 5 Pro',
-                'Honor 200 Pro', '100 Pro', '90', 'X9b', 'X8b',
-                'Honor Play 50 Plus', 'Pad 9'
-            ],
             Nothing: [
                 'Nothing Phone (2a)', 'Phone (2)', 'Phone (1)'
             ],
             Fairphone: [
                 'Fairphone 5', 'Fairphone 4'
             ],
-            RedMagic: [
-                'Red Magic 9 Pro+', '9 Pro', '8S Pro+', '8 Pro', '7S Pro'
-            ],
             BlackShark: [
                 'Black Shark 5 Pro', '5 RS', '4 Pro', '3'
-            ]
+            ],
+            UMIDIGI: ['A15 Pro', 'G2', 'Bison 3', 'F3', 'Power 7'],
+            Cubot: ['X7', 'P40', 'Note 50', 'KingKong 9'],
+            Doogee: ['S100', 'V30', 'S98 Pro', 'Blade 10'],
+            Oukitel: ['WP30', 'WP28', 'C19', 'K15'],
+            Leagoo: ['M13', 'Z13', 'S12'],
+            Ulefone: ['Armor 26', 'Armor 24', 'Power Armor 13'],
+            Coolpad: ['Cool 30', 'Coolpad Note 10'],
+            Gionee: ['Gionee S12', 'M12'],
+            Haier: ['Haier Alpha A6', 'A7'],
+            Hisense: ['Infinity H60', 'E60'],
+            Konka: ['Konka X10', 'X9'],
+            Meitu: ['Meitu T9', 'M8'],
+            Sharp: ['Aquos R8', 'Aquos Sense 8'],
+            TCL: ['TCL 50 Pro', 'TCL 40 SE', 'Alcatel 1B', 'Alcatel 3L'],
+            Wiko: ['Wiko T50', 'Wiko View 5'],
+            Xolo: ['Xolo Era 5X', 'Xolo Q'],
+            Lava: ['Lava Agni 2', 'Lava Blaze 2'],
+            Panasonic: ['Panasonic Eluga I9'],
+            Philips: ['Philips S388'],
+            Positivo: ['Positivo Twist 5 Pro'],
+            Multilaser: ['Multilaser G Max'],
+            QMobile: ['QMobile Noir J15'],
+            Symphony: ['Symphony Z45'],
+            Maxcom: ['Maxcom MM71'],
+            MyPhone: ['MyPhone Aqua'],
+            Neffos: ['Neffos X20'],
+            Cat: ['Cat S75', 'Cat S62'],
+            Kyocera: ['Kyocera DuraForce'],
+            Fujitsu: ['Fujitsu Arrows'],
+            Vertu: ['Vertu Aster'],
+            Bgh: ['BGH Joy 2'],
+            Noblex: ['Noblex S5']
         };
 
-        // Sensibilidad base calibrada por marca según pantalla y táctil
-        const baseSensibility = {
-            Samsung: 38,
-            Xiaomi: 42,
-            Apple: 36,
-            OnePlus: 40,
-            Huawei: 39,
-            Oppo: 41,
-            Realme: 38,
-            Vivo: 37,
-            Motorola: 36,
-            Sony: 35,
-            Google: 34,
-            Nokia: 33,
-            Asus: 37,
-            Lenovo: 35,
-            LG: 34,
-            ZTE: 33,
-            BlackBerry: 32,
-            Tecno: 40,
-            Infinix: 41,
-            Meizu: 38,
-            Honor: 39,
-            Nothing: 37,
-            Fairphone: 35,
-            RedMagic: 42,
-            BlackShark: 43
+        // Sensibilidad base calibrada por marca (escala 0-200)
+        const baseSens = {
+            Samsung: 145,
+            Xiaomi: 155,
+            Apple: 135,
+            OnePlus: 148,
+            Huawei: 142,
+            Honor: 144,
+            Oppo: 150,
+            Realme: 152,
+            Vivo: 147,
+            Motorola: 138,
+            Sony: 130,
+            Google: 128,
+            Nokia: 125,
+            Asus: 146,
+            Lenovo: 132,
+            LG: 129,
+            ZTE: 140,
+            BlackBerry: 118,
+            Tecno: 149,
+            Infinix: 151,
+            Meizu: 143,
+            Nothing: 136,
+            Fairphone: 126,
+            BlackShark: 158,
+            UMIDIGI: 133,
+            Cubot: 124,
+            Doogee: 131,
+            Oukitel: 127,
+            Leagoo: 122,
+            Ulefone: 134,
+            Coolpad: 137,
+            Gionee: 139,
+            Haier: 123,
+            Hisense: 132,
+            Konka: 121,
+            Meitu: 135,
+            Sharp: 136,
+            TCL: 138,
+            Wiko: 130,
+            Xolo: 128,
+            Lava: 125,
+            Panasonic: 120,
+            Philips: 122,
+            Positivo: 131,
+            Multilaser: 129,
+            QMobile: 119,
+            Symphony: 124,
+            Neffos: 133,
+            Cat: 126,
+            Kyocera: 123,
+            Fujitsu: 127,
+            Vertu: 140,
+            Bgh: 134,
+            Noblex: 135
         };
 
         // Elementos del DOM
@@ -363,6 +517,7 @@
         const generateBtn = document.getElementById('generateBtn');
         const splashScreen = document.getElementById('splashScreen');
         const mainApp = document.getElementById('mainApp');
+        const loadingScreen = document.getElementById('loadingScreen');
 
         // Rellena modelos según marca seleccionada
         deviceBrandSelect.addEventListener('change', () => {
@@ -378,38 +533,43 @@
             }
         });
 
-        // Generar sensibilidad calibrada
+        // Generar sensibilidad completa (6 valores de 0 a 200)
         function generateSensitivity(brand, model, sensibility) {
-            // Ajuste por modelo: basado en tamaño y características aproximadas
-            const modelAdjustment = (model.length % 5) - 2;
+            const base = baseSens[brand] || 140;
+            const mod = (model.length % 7) - 3; // ajuste por modelo
 
-            // Sensibilidad base
-            let sensValue = baseSensibility[brand] + modelAdjustment;
-
-            // Ajuste por tipo de sensibilidad
-            const niveles = {
-                baja: { suma: -3.5, nombre: 'Baja - Precisión Corto Alcance' },
-                media: { suma: 0, nombre: 'Media - Equilibrada' },
-                alta: { suma: 6.5, nombre: 'Alta - Precisión Largo Alcance' },
-                maxima: { suma: 12, nombre: 'MÁXIMA - Tiros a la Cabeza 100% Rojo' }
+            // Niveles de sensibilidad
+            const nivel = {
+                baja: { mult: 0.85, nombre: 'Baja - Precisión Corto Alcance' },
+                media: { mult: 1.00, nombre: 'Media - Equilibrada' },
+                alta: { mult: 1.15, nombre: 'Alta - Precisión Largo Alcance' },
+                maxima: { mult: 1.30, nombre: 'MÁXIMA - Tiros a la Cabeza 100% Rojo' }
             };
 
-            const nivel = niveles[sensibility];
-            sensValue += nivel.suma;
+            const n = nivel[sensibilidad];
 
-            // Ajuste final calibrado para disparos a la cabeza
-            const finalSens = (sensValue * 1.12).toFixed(2);
+            // Cálculo de cada valor (limitado entre 0 y 200)
+            const general = Math.min(200, Math.round((base + mod) * n.mult));
+            const puntoRojo = Math.min(200, Math.round((base - 3 + mod) * n.mult));
+            const mira2x = Math.min(200, Math.round((base - 8 + mod) * n.mult));
+            const mira4x = Math.min(200, Math.round((base - 12 + mod) * n.mult));
+            const francotirador = Math.min(200, Math.round((base - 20 + mod) * n.mult));
+            const camara = Math.min(200, Math.round((base + 5 + mod) * n.mult));
 
             return {
                 marca: brand,
                 modelo: model,
-                tipoSensibilidad: nivel.nombre,
-                valorSensibilidad: finalSens,
-                descripcion: `✅ Sensibilidad calibrada para ${brand} ${model}.\n🎯 Optimizada para tiros a la cabeza.\n🔥 Configuración equilibrada para levantar mira fácilmente.\n⚡ Valor calculado con ajuste por marca + modelo + nivel.`
+                tipo: n.nombre,
+                general,
+                puntoRojo,
+                mira2x,
+                mira4x,
+                francotirador,
+                camara
             };
         }
 
-        // Botón generar
+        // Botón generar con pantalla de carga
         generateBtn.addEventListener('click', () => {
             const brand = deviceBrandSelect.value;
             const model = deviceModelSelect.value;
@@ -420,14 +580,32 @@
                 return;
             }
 
-            const config = generateSensitivity(brand, model, sens);
+            // Mostrar pantalla de carga
+            loadingScreen.style.display = 'flex';
+            resultDiv.innerHTML = '';
 
-            resultDiv.textContent =
-                `📱 Marca: ${config.marca}\n` +
-                `🔧 Modelo: ${config.modelo}\n` +
-                `🎯 Tipo: ${config.tipoSensibilidad}\n` +
-                `⚡ Sensibilidad: ${config.valorSensibilidad}\n\n` +
-                `${config.descripcion}`;
+            // Esperar 2.5 segundos y mostrar resultado
+            setTimeout(() => {
+                const config = generateSensitivity(brand, model, sens);
+
+                loadingScreen.style.display = 'none';
+
+                resultDiv.innerHTML = `
+                    <div class="result-title">🎯 SENSIBILIDAD CALIBRADA</div>
+                    📱 Marca: ${config.marca}<br>
+                    🔧 Modelo: ${config.modelo}<br>
+                    ⚙️ Tipo: ${config.tipo}<br><br>
+                    ──────────────────────────────<br>
+                    ✅ General:                  <b>${config.general}</b><br>
+                    🔴 Mira de Punto Rojo:      <b>${config.puntoRojo}</b><br>
+                    🔭 Mira 2x:                 <b>${config.mira2x}</b><br>
+                    🎯 Mira 4x:                 <b>${config.mira4x}</b><br>
+                    💥 Mira Francotirador:      <b>${config.francotirador}</b><br>
+                    📷 Cámara:                  <b>${config.camara}</b><br>
+                    ──────────────────────────────<br>
+                    <small>🔥 Valores calibrados de 0 a 200 optimizados para levantar mira a la cabeza</small>
+                `;
+            }, 2500);
         });
 
         // Pantalla de inicio
