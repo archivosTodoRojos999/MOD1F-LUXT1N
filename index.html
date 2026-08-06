@@ -204,16 +204,12 @@
             <option value="Oukitel">Oukitel</option>
             <option value="Leagoo">Leagoo</option>
             <option value="Ulefone">Ulefone</option>
-            <option value="Xiaolajiao">Xiaolajiao</option>
-            <option value="Vivo">Vsmart</option>
-            <option value="ZUK">ZUK</option>
             <option value="Coolpad">Coolpad</option>
             <option value="Gionee">Gionee</option>
             <option value="Haier">Haier</option>
             <option value="Hisense">Hisense</option>
             <option value="Konka">Konka</option>
             <option value="Meitu">Meitu</option>
-            <option value="Pantech">Pantech</option>
             <option value="Sharp">Sharp</option>
             <option value="TCL">TCL / Alcatel</option>
             <option value="Wiko">Wiko</option>
@@ -227,20 +223,13 @@
             <option value="Symphony">Symphony</option>
             <option value="Maxcom">Maxcom</option>
             <option value="MyPhone">MyPhone</option>
-            <option value="Strawberry">Strawberry</option>
             <option value="Neffos">Neffos</option>
             <option value="Cat">Cat (Caterpillar)</option>
             <option value="Kyocera">Kyocera</option>
             <option value="Fujitsu">Fujitsu</option>
-            <option value="NEC">NEC</option>
-            <option value="Casio">Casio</option>
             <option value="Vertu">Vertu</option>
-            <option value="Sirin">Sirin Labs</option>
-            <option value="Turbo">Turbo</option>
             <option value="Bgh">BGH</option>
             <option value="Noblex">Noblex</option>
-            <option value="Kaios">Teléfonos con KaiOS</option>
-            <!-- Puedes ampliar más -->
         </select>
 
         <label for="deviceModel">Selecciona el Modelo:</label>
@@ -569,7 +558,7 @@
             };
         }
 
-        // Botón generar con pantalla de carga
+        // Botón generar con pantalla de carga — 4 segundos exactos
         generateBtn.addEventListener('click', () => {
             const brand = deviceBrandSelect.value;
             const model = deviceModelSelect.value;
@@ -584,12 +573,14 @@
             loadingScreen.style.display = 'flex';
             resultDiv.innerHTML = '';
 
-            // Esperar 2.5 segundos y mostrar resultado
+            // ⏳ ESPERA 4 SEGUNDOS EXACTOS y luego muestra el resultado
             setTimeout(() => {
                 const config = generateSensitivity(brand, model, sens);
 
+                // Oculta la pantalla de carga
                 loadingScreen.style.display = 'none';
 
+                // Muestra la sensibilidad
                 resultDiv.innerHTML = `
                     <div class="result-title">🎯 SENSIBILIDAD CALIBRADA</div>
                     📱 Marca: ${config.marca}<br>
@@ -605,7 +596,7 @@
                     ──────────────────────────────<br>
                     <small>🔥 Valores calibrados de 0 a 200 optimizados para levantar mira a la cabeza</small>
                 `;
-            }, 2500);
+            }, 4000); // ⏱️ 4000 milisegundos = 4 segundos
         });
 
         // Pantalla de inicio
