@@ -3,104 +3,112 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Luxtin S4nc1 - Generador de Sensibilidades para Freefire</title>
+    <title>Luxtin S4nc1 - Generador de Sensibilidades para Free Fire</title>
     <style>
-        /* Reset y estilos básicos */
+        /* Estilos básicos */
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #121212;
-            color: #eee;
+            background: #000000;
+            color: #fff;
         }
 
-        .centered {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            flex-direction: column;
-        }
-
+        /* Pantalla de inicio */
         #splashScreen {
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            background-color: #000;
             height: 100%;
             width: 100%;
             position: fixed;
             z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             flex-direction: column;
-            gap: 20px;
-            font-size: 3rem;
-            font-weight: bold;
-            letter-spacing: 0.2em;
+        }
+
+        #logoText {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: 0.3em;
             color: white;
-            animation: fadeIn 1.5s ease forwards;
+            text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+            animation: fadeBlink 3s ease-in-out forwards;
         }
 
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes fadeBlink {
+            0%, 100% { opacity: 0; }
+            20%, 80% { opacity: 1; }
         }
 
+        /* Contenedor principal */
         #mainApp {
             display: none;
             padding: 20px;
-            max-width: 600px;
+            max-width: 700px;
             margin: auto;
+            color: white;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ff0000;
+            text-shadow: 0 0 5px #ff0000;
         }
 
         label {
             display: block;
             margin-top: 15px;
-            font-weight: 600;
+            font-weight: 700;
+            color: #fff;
         }
 
         select, button {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin-top: 5px;
-            background-color: #222;
-            border: none;
-            color: white;
-            border-radius: 5px;
-            font-size: 1rem;
+            background-color: #111;
+            border: 1px solid #ff0000;
+            color: #fff;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        select:hover, button:hover {
+            background-color: #220000;
+            cursor: pointer;
         }
 
         button {
-            margin-top: 20px;
-            background: #2575fc;
-            cursor: pointer;
-            font-weight: 700;
-            transition: background 0.3s ease;
-        }
-
-        button:hover {
-            background: #4591ff;
+            margin-top: 25px;
+            background-color: #ff0000;
+            font-weight: 900;
         }
 
         #result {
-            margin-top: 25px;
-            background: #222;
-            padding: 15px;
+            margin-top: 30px;
+            background-color: #111;
+            padding: 20px;
             border-radius: 8px;
             font-family: monospace;
             white-space: pre-wrap;
+            box-shadow: 0 0 15px #ff0000;
+        }
+
+        /* Scroll para la lista de modelos si es muy larga */
+        #deviceModel {
+            max-height: 150px;
+            overflow-y: auto;
         }
     </style>
 </head>
 <body>
-    <!-- Pantalla de inicio con logo animado -->
-    <div id="splashScreen" class="centered">
-        <div>LUXT1N</div>
-        <div>S4NC1</div>
-        <small>Generador Profesional de Sensibilidades</small>
+    <!-- Pantalla de inicio -->
+    <div id="splashScreen">
+        <div id="logoText">LUXT1N S4NC1</div>
     </div>
 
     <!-- Pantalla principal -->
@@ -118,11 +126,20 @@
             <option value="Oppo">Oppo</option>
             <option value="Realme">Realme</option>
             <option value="Vivo">Vivo</option>
-            <!-- Puedes agregar más marcas -->
+            <option value="Motorola">Motorola</option>
+            <option value="Sony">Sony</option>
+            <option value="Google">Google</option>
+            <option value="Nokia">Nokia</option>
+            <option value="Asus">Asus</option>
+            <option value="Lenovo">Lenovo</option>
+            <option value="LG">LG</option>
+            <option value="ZTE">ZTE</option>
+            <option value="BlackBerry">BlackBerry</option>
+            <!-- Puedes ampliar más -->
         </select>
 
         <label for="deviceModel">Selecciona el Modelo:</label>
-        <select id="deviceModel" required>
+        <select id="deviceModel" required size="7">
             <option value="" disabled selected>Elige un modelo</option>
         </select>
 
@@ -133,36 +150,45 @@
             <option value="alta">Alta (Precisión largo alcance)</option>
         </select>
 
-        <button id="generateBtn">Generar Sensibilidad "Tipo Hacker"</button>
+        <button id="generateBtn">Generar Sensibilidad Calibrada "Tipo Hacker"</button>
 
         <div id="result"></div>
     </div>
 
     <script>
-        // Modelos por marca para ejemplo
+        // Lista ampliada de modelos por marca (ejemplos reales)
         const modelsByBrand = {
-            Samsung: ['Galaxy S21', 'Galaxy Note 20', 'Galaxy A52', 'Galaxy S10'],
-            Xiaomi: ['Redmi Note 10', 'Mi 11', 'Poco X3', 'Redmi 9'],
-            Apple: ['iPhone 13', 'iPhone 12', 'iPhone SE', 'iPhone 11'],
-            OnePlus: ['9 Pro', 'Nord 2', '8T', '7T Pro'],
-            Huawei: ['P40', 'Mate 30', 'Nova 7', 'Y9a'],
-            Oppo: ['Find X3', 'Reno 5', 'A54', 'F19 Pro'],
-            Realme: ['GT', '8 Pro', 'Narzo 30', 'X7 Max'],
-            Vivo: ['X60', 'V21', 'Y20', 'S9']
+            Samsung: ['Galaxy S21 Ultra', 'Galaxy S21', 'Galaxy Note 20 Ultra', 'Galaxy A52', 'Galaxy S10', 'Galaxy Z Fold 3', 'Galaxy M32'],
+            Xiaomi: ['Redmi Note 10 Pro', 'Mi 11 Ultra', 'Poco X3 Pro', 'Redmi 9A', 'Mi 10T', 'Redmi K40', 'Black Shark 4'],
+            Apple: ['iPhone 13 Pro Max', 'iPhone 13', 'iPhone 12 Pro', 'iPhone SE (2020)', 'iPhone 11', 'iPhone XR', 'iPhone X'],
+            OnePlus: ['9 Pro', '9', 'Nord 2', '8T', '7T Pro', '7', '6T'],
+            Huawei: ['P40 Pro', 'Mate 40 Pro', 'Nova 7', 'Y7a', 'P30', 'Mate 30', 'Honor 50'],
+            Oppo: ['Find X3 Pro', 'Reno 6', 'A54', 'F19 Pro', 'A94', 'Reno 5', 'A53'],
+            Realme: ['GT Master', '8 Pro', 'Narzo 30', 'X7 Max', 'C25', '7i', '6 Pro'],
+            Vivo: ['X60 Pro', 'V21', 'Y20', 'S9', 'V20 SE', 'Y12s', 'iQOO 7'],
+            Motorola: ['Moto G100', 'Edge 20', 'G9 Plus', 'One Fusion+', 'Razr 5G', 'Moto E7', 'Moto Z4'],
+            Sony: ['Xperia 1 III', 'Xperia 5 II', 'Xperia 10 III', 'Xperia L4', 'Xperia 1 II', 'Xperia 5', 'Xperia 10 II'],
+            Google: ['Pixel 6 Pro', 'Pixel 6', 'Pixel 5a', 'Pixel 4 XL', 'Pixel 4', 'Pixel 3a', 'Pixel 3'],
+            Nokia: ['8.3 5G', '5.4', '3.4', '2.4', '1.4', '7.2', '6.2'],
+            Asus: ['ROG Phone 5', 'Zenfone 8', 'Zenfone 7', 'ROG Phone 3', 'Zenfone 6', 'ROG Phone 2', 'Zenfone Max Pro M2'],
+            Lenovo: ['Legion Phone Duel 2', 'K12 Pro', 'Z6 Pro', 'A6 Note', 'K10 Note', 'Z5 Pro', 'Phab 2 Pro'],
+            LG: ['Velvet', 'Wing', 'G8X ThinQ', 'V60 ThinQ', 'G7 ThinQ', 'V50 ThinQ', 'K92 5G'],
+            ZTE: ['Axon 30 Ultra', 'Blade V2020', 'Axon 20 5G', 'Blade A7s 2020', 'Axon 11 SE', 'Blade 20 Smart', 'Nubia Red Magic 6'],
+            BlackBerry: ['Key2', 'Motion', 'Evolve', 'Evolve X', 'KeyOne', 'Priv', 'DTEK60']
         };
 
-        // Elementos del DOM
+        // Rellena modelos según marca seleccionada
         const deviceBrandSelect = document.getElementById('deviceBrand');
         const deviceModelSelect = document.getElementById('deviceModel');
         const sensibilitySelect = document.getElementById('sensibility');
         const resultDiv = document.getElementById('result');
         const generateBtn = document.getElementById('generateBtn');
+        const splashScreen = document.getElementById('splashScreen');
+        const mainApp = document.getElementById('mainApp');
 
-        // Al seleccionar marca actualiza modelos
         deviceBrandSelect.addEventListener('change', () => {
             const brand = deviceBrandSelect.value;
             deviceModelSelect.innerHTML = '<option value="" disabled selected>Elige un modelo</option>';
-
             if (modelsByBrand[brand]) {
                 modelsByBrand[brand].forEach(model => {
                     const option = document.createElement('option');
@@ -173,54 +199,56 @@
             }
         });
 
-        // Función para simular una sensibilidad calibrada tipo hacker
+        // Generar sensibilidad calibrada y precisa
         function generateSensitivity(brand, model, sensibility) {
-            // Base valores para diferentes marcas y modelos
-            // Estos valores son simulados y podrían ajustarse con datos reales
+            // Base sensibilidad simulada (valores para ejemplo, calibrados para precisión)
             const baseSensibility = {
-                Samsung: 40,
-                Xiaomi: 45,
-                Apple: 38,
-                OnePlus: 42,
-                Huawei: 43,
-                Oppo: 44,
-                Realme: 41,
-                Vivo: 40
+                Samsung: 38,
+                Xiaomi: 42,
+                Apple: 36,
+                OnePlus: 40,
+                Huawei: 39,
+                Oppo: 41,
+                Realme: 38,
+                Vivo: 37,
+                Motorola: 36,
+                Sony: 35,
+                Google: 34,
+                Nokia: 33,
+                Asus: 37,
+                Lenovo: 35,
+                LG: 34,
+                ZTE: 33,
+                BlackBerry: 32
             };
 
-            const modelModifier = model.length % 10; // simple variación por modelo
+            // Ajuste basado en modelo: un valor entre -2 y +2 según longitud del string modelo
+            const modelAdjustment = (model.length % 5) - 2;
 
-            // Ajustes para baja y alta sensibilidad
-            let sensitivityValue;
-            if (sensibility === 'baja') {
-                // Baja sensibilidad: más precisión en corto alcance
-                sensitivityValue = baseSensibility[brand] - 5 + modelModifier * 0.5;
+            // Sensibilidad base + ajuste modelo
+            let sensValue = baseSensibility[brand] + modelAdjustment;
+
+            // Ajuste según sensibilidad alta/baja
+            if (sensibility === 'alta') {
+                sensValue += 6.5;  // sensibilidad alta para precisión a distancia
             } else {
-                // Alta sensibilidad: mejor para alcance largo y disparos a la cabeza
-                sensitivityValue = baseSensibility[brand] + 5 + modelModifier * 0.7;
+                sensValue -= 3.5;  // sensibilidad baja para precisión en corto alcance
             }
 
-            // Ajuste fino para disparos a la cabeza
-            const headshotMultiplier = sensibility === 'alta' ? 1.15 : 1.05;
-            const finalSensitivity = (sensitivityValue * headshotMultiplier).toFixed(2);
+            // Ajuste final IA simulada para que todos los disparos sean a la cabeza (todo rojo)
+            const finalSens = (sensValue * 1.12).toFixed(2);
 
-            // Retornar configuración detallada
             return {
                 marca: brand,
                 modelo: model,
-                sensibilidad: sensibility === 'alta'
-                    ? 'Alta Precisión Largo Alcance'
-                    : 'Baja Precisión Corto Alcance',
-                sensibilidadValor: finalSensitivity,
-                descripcion: `Sensibilidad calibrada para disparos a la cabeza 100% rojos. Optimizada para ${
-                    sensibility === 'alta'
-                        ? 'alcance largo y precisión máxima'
-                        : 'alcance corto y precisión en espacios reducidos'
-                }.`
+                tipoSensibilidad: sensibility === 'alta'
+                    ? 'Alta - Precisión Largo Alcance'
+                    : 'Baja - Precisión Corto Alcance',
+                valorSensibilidad: finalSens,
+                descripcion: `Sensibilidad calibrada única y precisa para ${brand} ${model}. Optimizada para tiros 100% cabeza (todo rojo).`
             };
         }
 
-        // Acción al pulsar botón de generar
         generateBtn.addEventListener('click', () => {
             const brand = deviceBrandSelect.value;
             const model = deviceModelSelect.value;
@@ -237,29 +265,17 @@
             resultDiv.textContent =
                 `Marca: ${config.marca}\n` +
                 `Modelo: ${config.modelo}\n` +
-                `Tipo de Sensibilidad: ${config.sensibilidad}\n` +
-                `Valor de Sensibilidad: ${config.sensibilidadValor}\n\n` +
+                `Tipo de Sensibilidad: ${config.tipoSensibilidad}\n` +
+                `Valor de Sensibilidad: ${config.valorSensibilidad}\n\n` +
                 `${config.descripcion}`;
         });
 
-        // Animación y sonido de entrada
+        // Animación de entrada de 3 segundos con texto que aparece y desaparece
         window.addEventListener('load', () => {
-            const splash = document.getElementById('splashScreen');
-
-            // Sonido de entrada
-            const audioCtx = new AudioContext();
-            const oscillator = audioCtx.createOscillator();
-            oscillator.type = 'sine';
-            oscillator.frequency.setValueAtTime(440, audioCtx.currentTime);
-            oscillator.connect(audioCtx.destination);
-            oscillator.start();
-            oscillator.stop(audioCtx.currentTime + 0.15);
-
-            // Ocultar pantalla de inicio y mostrar app principal
             setTimeout(() => {
-                splash.style.display = 'none';
-                document.getElementById('mainApp').style.display = 'block';
-            }, 2500);
+                splashScreen.style.display = 'none';
+                mainApp.style.display = 'block';
+            }, 3000); // 3 segundos exactos
         });
     </script>
 </body>
